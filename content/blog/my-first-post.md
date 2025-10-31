@@ -1,11 +1,7 @@
 +++
-title = "First Post"
-date = 2025-10-30T18:18:18+00:00
-
-
-
-[extra]
-author = "Your Name"
+title = "My First Post"
+date = 2025-10-28
 +++
 
-This is my first post.
+Welcome to **Zola-Mac** — this is your first post!  
+You can write in Markdown and include code, images, or links.

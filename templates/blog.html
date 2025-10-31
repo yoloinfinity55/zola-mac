@@ -1,14 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  {{ section.title }}
-</h1>
-<ul>
-  <!-- If you are using pagination, section.pages will be empty.
-       You need to use the paginator object -->  
-  {% for page in section.pages %}
-  <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+<h1>{{ section.title }}</h1>
+
+{% if paginator %}
+  {% for page in paginator.pages %}
+    <h2><a href="{{ page.permalink }}">{{ page.title }}</a></h2>
+    <p><small>{{ page.date | date(format="%B %e, %Y") }}</small></p>
+    {% if page.summary %}
+      <p>{{ page.summary | safe }}</p>
+    {% endif %}
   {% endfor %}
-</ul>
+
+  <nav style="margin-top:2rem; text-align:center;">
+    {% if paginator.previous %}
+      <a href="{{ paginator.previous }}">← Newer posts</a>
+    {% endif %}
+    {% if paginator.next %}
+      <a href="{{ paginator.next }}" style="margin-left:2rem;">Older posts →</a>
+    {% endif %}
+  </nav>
+{% else %}
+  {% for page in section.pages %}
+    <h2><a href="{{ page.permalink }}">{{ page.title }}</a></h2>
+    <p><small>{{ page.date | date(format="%B %e, %Y") }}</small></p>
+  {% endfor %}
+{% endif %}
 {% endblock content %}

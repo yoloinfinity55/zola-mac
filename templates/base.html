@@ -1,17 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Zola-mac | Project Specification for Zola-mac Blog</title>
+    <meta name="description" content="A blog about building beautiful static sites with Zola on macOS.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-  <meta charset="utf-8">
-  <title>Zola-Mac</title>
-</head>
+    <style>
+      :root {
+        --blue: #007bff;
+        --gray: #f9f9f9;
+        --dark: #333;
+      }
 
-<body>
-  <section class="section">
-    <div class="container">
-      {% block content %} {% endblock content %}
-    </div>
-  </section>
-</body>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: var(--gray);
+        color: var(--dark);
+        line-height: 1.6;
+      }
 
+      /* ===== Fixed Navbar ===== */
+      header {
+        background: var(--blue);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 1.4rem;
+      }
+      header h1 a {
+        color: #fff;
+        text-decoration: none;
+      }
+      nav a {
+        color: #fff;
+        margin-left: 1rem;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      /* ===== Main Content ===== */
+      main.container {
+        max-width: 800px;
+        margin: 6rem auto 2rem auto; /* Add top margin to prevent overlap with fixed header */
+        padding: 2rem 1.5rem;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem;
+        color: #888;
+        font-size: 0.9rem;
+      }
+
+      .post-list ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .post-list li {
+        margin-bottom: 1.5rem;
+      }
+
+      .post-list a {
+        color: var(--blue);
+        font-weight: 600;
+      }
+
+      .post-list a:hover {
+        text-decoration: underline;
+      }
+
+      /* ===== Responsive ===== */
+      @media (max-width: 600px) {
+        header {
+          flex-direction: column;
+          text-align: center;
+          padding: 1rem;
+        }
+        nav {
+          margin-top: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="http://127.0.0.1:1111/">Zola-mac</a></h1>
+      <nav>
+        <a href="http://127.0.0.1:1111/">Home</a>
+        <a href="http://127.0.0.1:1111/blog">Blog</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <article class="post">
+        <h1 class="title">Project Specification for Zola-mac Blog</h1>
+        <p class="subtitle" style="color:#888;">October 29, 2025</p>
+
+        <div class="post-body">
+          <h1 id="project-specification-zola-mac-blog">Project Specification: Zola-mac Blog</h1>
+          <h2 id="project-goal">Project Goal</h2>
+          <p>To create a comprehensive resource for developers and content creators using the Zola static site generator on macOS. The blog will cover topics from basic setup and configuration to advanced customization and deployment.</p>
+
+          <h2 id="target-audience">Target Audience</h2>
+          <ul>
+            <li>Web developers</li>
+            <li>Technical writers</li>
+            <li>Hobbyist bloggers</li>
+            <li>Anyone interested in static site generation on a Mac.</li>
+          </ul>
+
+          <h2 id="key-topics-to-cover">Key Topics to Cover</h2>
+          <h3 id="getting-started">Getting Started</h3>
+          <ul>
+            <li>Installing Zola on macOS (using Homebrew, etc.)</li>
+            <li>Creating a new Zola site</li>
+            <li>Understanding the Zola directory structure</li>
+          </ul>
+
+          <h3 id="content-management">Content Management</h3>
+          <ul>
+            <li>Writing content in Markdown</li>
+            <li>Using Zola's shortcodes and macros</li>
+            <li>Managing assets (images, CSS, JS)</li>
+          </ul>
+
+          <h3 id="customization">Customization</h3>
+          <ul>
+            <li>Creating and modifying Zola themes</li>
+            <li>Using the Tera templating engine</li>
+            <li>Customizing taxonomies (tags, categories)</li>
+          </ul>
+
+          <h3 id="deployment">Deployment</h3>
+          <ul>
+            <li>Deploying a Zola site to GitHub Pages</li>
+            <li>Setting up a CI/CD pipeline with GitHub Actions</li>
+            <li>Other deployment options (Netlify, Vercel, etc.)</li>
+          </ul>
+
+          <h3 id="advanced-topics">Advanced Topics</h3>
+          <ul>
+            <li>Using Zola's search functionality</li>
+            <li>Multilingual sites</li>
+            <li>Performance optimization</li>
+          </ul>
+        </div>
+
+        <hr style="margin:2rem 0;">
+        <p><a href="http://127.0.0.1:1111/blog">← Back to Blog</a></p>
+      </article>
+    </main>
+
+    <footer>
+      © 2025 Zola-mac. Built with ❤️ using Zola.
+    </footer>
+
+    <script src="/livereload.js?port=1024&amp;mindelay=10"></script>
+  </body>
 </html>

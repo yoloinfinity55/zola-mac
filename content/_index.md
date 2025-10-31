@@ -1,4 +1,6 @@
 +++
 sort_by = "date"
 paginate_by = 5
+transparent = true
+template = "index.html"
 +++

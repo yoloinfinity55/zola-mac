@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="post">
+  <h1 class="title">{{ page.title }}</h1>
+  <p class="subtitle" style="color:#888;">{{ page.date | date(format="%B %e, %Y") }}</p>
+  <div class="post-body">
+    {{ page.content | safe }}
+  </div>
+
+  <hr style="margin:2rem 0;">
+  <p><a href="{{ get_url(path='blog') }}">← Back to Blog</a>
+</p>
+
+  <nav class="post-nav" style="display:flex; justify-content:space-between; margin-top:2rem;">
+    {% if page.previous %}
+      <a href="{{ page.previous.permalink }}">← {{ page.previous.title }}</a>
+    {% endif %}
+    {% if page.next %}
+      <a href="{{ page.next.permalink }}">{{ page.next.title }} →</a>
+    {% endif %}
+  </nav>
+</article>
+{% endblock content %}

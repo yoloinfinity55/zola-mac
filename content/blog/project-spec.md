@@ -1,6 +1,6 @@
 ---
 title: "Project Specification for Zola-mac Blog"
-date: 2025-10-30
+date: 2025-10-29
 ---
 
 # Project Specification: Zola-mac Blog

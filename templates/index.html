@@ -1,15 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  This is my blog made with Zola.
-</h1>
-<p>Paragraph 1</p>
-<p>Paragraph 2</p>
+<div class="hero" style="text-align:center; padding:2rem 1rem;">
+  <h1>Welcome to {{ config.title }}</h1>
+  <p>{{ config.description }}</p>
+</div>
 
-# Test markdown
-<hr>
-## Heading 3
-
-<p><a href="{{ get_url(path='@/blog/_index.md') }}">Posts</a>.</p>
+<div class="post-list">
+  <h2 style="text-align:center; font-weight:300; margin-bottom:2rem;">Latest Posts</h2>
+  {% set blog_section = get_section(path="blog/_index.md") %}
+  <ul>
+    {% for post in blog_section.pages | sort(attribute="date") | reverse | slice(end=5) %}
+      <li class="post-item" style="margin-bottom:1.5rem;">
+        <h3 class="post-title">
+          <a href="{{ post.permalink }}">{{ post.title }}</a>
+        </h3>
+        <p class="post-meta" style="color:#6c757d;">{{ post.date | date(format="%B %e, %Y") }}</p>
+        {% if post.summary %}
+          <p>{{ post.summary | safe }}</p>
+        {% endif %}
+      </li>
+    {% else %}
+      <p style="text-align:center; color:#999;">No posts found.</p>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock content %}
