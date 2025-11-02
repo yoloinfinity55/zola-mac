@@ -5,36 +5,40 @@
     <title>Zola-mac | Project Specification for Zola-mac Blog</title>
     <meta name="description" content="A blog about building beautiful static sites with Zola on macOS.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
       :root {
         --blue: #007bff;
         --gray: #f9f9f9;
         --dark: #333;
+        --light-gray: #f1f1f1;
       }
 
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         margin: 0;
         padding: 0;
-        background: var(--gray);
+        background: var(--light-gray);
         color: var(--dark);
         line-height: 1.6;
       }
 
       /* ===== Fixed Navbar ===== */
       header {
-        background: var(--blue);
-        color: #fff;
+        background: #fff;
+        color: var(--dark);
         display: flex;
         align-items: center;
+        justify-content: space-between;
         padding: 1rem 2rem;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         z-index: 1000;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
         gap: 2rem;
       }
       header h1 {
@@ -42,58 +46,107 @@
         font-size: 1.4rem;
       }
       header h1 a {
-        color: #fff;
+        color: var(--dark);
         text-decoration: none;
       }
       nav {
         display: flex;
-        gap: 1rem;
+        gap: 1.5rem;
       }
       nav a {
-        color: #fff;
+        color: var(--dark);
         text-decoration: none;
         font-weight: 500;
+        transition: color 0.2s;
       }
       nav a:hover {
-        text-decoration: underline;
+        color: var(--blue);
+        text-decoration: none;
       }
 
       /* ===== Main Content ===== */
       main.container {
         max-width: 800px;
-        margin: 6rem auto 2rem auto; /* Add top margin to prevent overlap with fixed header */
-        padding: 2rem 1.5rem;
+        margin: 8rem auto 2rem auto;
+        padding: 2.5rem;
         background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      }
+
+      /* ===== Blog Post Styling ===== */
+      .post-content h1, .post-content h2, .post-content h3 {
+        color: var(--dark);
+        margin-top: 2rem;
+      }
+      .post-content p {
+        margin-bottom: 1.2rem;
+        line-height: 1.7;
+      }
+      .post-content a {
+        color: var(--blue);
       }
 
       footer {
         text-align: center;
-        padding: 2rem;
+        padding: 2.5rem;
         color: #888;
         font-size: 0.9rem;
+      }
+      .social-links a {
+        margin: 0 0.5rem;
+        color: #888;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .social-links a:hover {
+        color: var(--blue);
       }
 
       .post-list ul {
         list-style: none;
         padding: 0;
       }
-
       .post-list li {
         margin-bottom: 1.5rem;
       }
-
       .post-list a {
         color: var(--blue);
         font-weight: 600;
+        text-decoration: none;
       }
-
       .post-list a:hover {
         text-decoration: underline;
       }
 
+      /* ===== Back to Top Button ===== */
+      #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        cursor: pointer;
+        display: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: opacity 0.3s, visibility 0.3s;
+      }
+
       /* ===== Responsive ===== */
+      @media (max-width: 768px) {
+        header {
+          padding: 1rem 1.5rem;
+        }
+        main.container {
+          margin-top: 7rem;
+          padding: 2rem;
+        }
+      }
       @media (max-width: 600px) {
         header {
           flex-direction: column;
@@ -117,14 +170,40 @@
     </header>
 
     <main class="container">
-      {% block content %}
-      {% endblock content %}
+      <div class="post-content">
+        {% block content %}
+        {% endblock content %}
+      </div>
     </main>
 
     <footer>
-      © 2025 Zola-mac. Built with ❤️ using Zola.
+      <div class="social-links">
+        <a href="#" target="_blank">GitHub</a>
+        <a href="#" target="_blank">Twitter</a>
+        <a href="#" target="_blank">LinkedIn</a>
+      </div>
+      <p>© 2025 Zola-mac. Built with ❤️ using Zola.</p>
     </footer>
 
+    <button id="back-to-top" title="Go to top">↑</button>
+
+    <script>
+      // Back to Top Button
+      const backToTopButton = document.getElementById("back-to-top");
+
+      window.onscroll = function() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+          backToTopButton.style.display = "block";
+        } else {
+          backToTopButton.style.display = "none";
+        }
+      };
+
+      backToTopButton.onclick = function() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      };
+    </script>
     <script src="/livereload.js?port=1024&amp;mindelay=10"></script>
   </body>
 </html>

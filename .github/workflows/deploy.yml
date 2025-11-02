@@ -31,7 +31,10 @@ jobs:
           tar -xzf zola.tar.gz
           sudo mv zola /usr/local/bin/zola
       - name: Build with Zola
-        run: zola build
+        run: |
+          pip install requests
+          python3 scripts/generate_posts.py -n 10
+          zola build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
