@@ -32,14 +32,13 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1rem 2rem;
+        padding: 1rem 3rem; /* Increased right padding */
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
+        right: 0;
         z-index: 1000;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-        gap: 2rem;
       }
       header h1 {
         margin: 0;
@@ -51,7 +50,7 @@
       }
       nav {
         display: flex;
-        gap: 1.5rem;
+        gap: 2rem; /* Increased gap between nav items */
       }
       nav a {
         color: var(--dark);
@@ -140,7 +139,7 @@
       /* ===== Responsive ===== */
       @media (max-width: 768px) {
         header {
-          padding: 1rem 1.5rem;
+          padding: 1rem 2rem; /* Adjusted right padding */
         }
         main.container {
           margin-top: 7rem;
@@ -151,7 +150,7 @@
         header {
           flex-direction: column;
           text-align: center;
-          padding: 1rem;
+          padding: 1rem 1.5rem; /* Adjusted right padding */
         }
         nav {
           margin-top: 0.5rem;
