@@ -1,11 +1,8 @@
-# The URL the site will be built for
 base_url = "https://yoloinfinity55.github.io/zola-mac/"
-
 title = "Zola-mac"
-# theme = "tale-zola"
-
 description = "A blog about building beautiful static sites with Zola on macOS."
 compile_sass = false
-build_search_index = true
+build_search_index = false
 
-
+[markdown]
+highlight_code = true

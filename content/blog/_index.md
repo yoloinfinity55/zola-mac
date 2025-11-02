@@ -5,3 +5,5 @@ paginate_by = 10
 template = "blog.html"
 page_template = "page.html"
 +++
+
+Welcome to our Zola blog! Here you'll find comprehensive guides on building beautiful static sites with Zola on macOS.
