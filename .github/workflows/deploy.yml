@@ -33,7 +33,7 @@ jobs:
       - name: Build with Zola
         run: |
           pip install -r requirements.txt
-          python3 scripts/generate_posts.py -n 10
+          python3 scripts/generate_posts.py --fetch-api --count 10
           zola build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
