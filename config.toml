@@ -4,5 +4,9 @@ description = "A blog about building beautiful static sites with Zola on macOS."
 compile_sass = false
 build_search_index = false
 
+taxonomies = [
+    { name = "tags", feed = true }
+]
+
 [markdown]
 highlight_code = true
