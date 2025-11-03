@@ -1,16 +1,20 @@
 +++
-title = """Zola tutorial #2: Project and theme setup | Static site generator | Jamstack"""
-date = "2025-11-02"
-summary = """In this lesson we will create a project using zola's init command and install a theme."""
-tags = ["jamstack", "zola", "staticsitegenerator", "website", "markdown"]
+title = """Zola tutorial #3: Theme configuration & content structure | Static site generator | Jamstack"""
+date = "2021-05-15"
+summary = """In this lesson we will learn about configuring theme and also have a look at default content structure provided by Zola."""
+tags = ["jamstack", "zola", "website", "staticsitegenerator", "theme", "markdown"]
 author = """ITcracy"""
 
 [extra]
-youtube_url = """https://www.youtube.com/watch?v=Xd42NAnXzcc"""
-duration = 602
+youtube_url = """https://www.youtube.com/watch?v=GUQt52IXwXQ"""
+duration = 780
 +++
 
-In this lesson we will create a project using zola's init command and install a theme.
+<div class="youtube-embed">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GUQt52IXwXQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+In this lesson we will learn about configuring theme and also have a look at default content structure provided by Zola.
 
 In this series we are building a professional website for ITcracy using Zola, a static site generator in rust based on jamstack architecture.
 
@@ -19,14 +23,16 @@ Playlist: https://youtube.com/playlist?list=PL9pZM6WESR5Z1g_XFTT-hkPlHrTk5UPUt
 Website link - https://itcracy.com/ (check our website)
 
 Timestamps:
-0:00 recap and intro
-0:41 install zola
-2:00 create project
-3:00 directory structure
-3:40 run server
-4:28 install theme
-6:10 configure and use theme
-9:50 next lesson overview
+0:00 recap
+1:24 easy way to adapt theme's config
+2:57 editing the config.toml
+4:06 editing the navbar
+5:22 zola directory structure & url
+6:48 section page & single page
+9:53 adding content to homepage
+10:30 front matter
+11:58 markdown
+12:34 next lesson overview
 
 ⚡️ Course Links⚡️
 
@@ -58,4 +64,4 @@ Also SUBSCRIBE and press the BELL icon for more content! ⚡️
 
 #zola #staticsitegenerator #jamstack #wordpress #website #rust #itcracy
 
-[Watch on YouTube](https://www.youtube.com/watch?v=Xd42NAnXzcc)
+[Watch on YouTube](https://www.youtube.com/watch?v=GUQt52IXwXQ)
