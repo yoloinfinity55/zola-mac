@@ -1,280 +1,189 @@
 #!/usr/bin/env python3
-import argparse
-import json
-import logging
+"""
+generate_posts.py
+-----------------------------------
+Automated blog post generator for Zola.
+- Fetches YouTube metadata and transcript
+- Creates Markdown post with thumbnail, embed, keypoints, and AI-written narrative (via Groq)
+"""
+
 import os
 import sys
-import re
-import urllib.request
+import argparse
+import requests
 from datetime import datetime
-from typing import List, Dict, Optional
-from collections import Counter
-import math
+from slugify import slugify
+from yt_dlp import YoutubeDL
+import textwrap
 
-try:
-    from slugify import slugify
-    import yt_dlp
-except ImportError:
-    print("Error: Missing required dependencies. Please install them using:")
-    print(f"pip install python-slugify yt-dlp")
-    sys.exit(1)
+# -----------------------------
+# CONFIGURATION
+# -----------------------------
+CONTENT_DIR = "content/blog"
+THUMBNAIL_DIR = "static/blog"
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
+GROQ_MODEL = "llama3-8b-8192"
 
 
-class PostGenerator:
-    def __init__(self, content_dir="content", post_subdir=None, overwrite=False, verbose=False):
-        self.content_dir = content_dir
-        self.post_subdir = post_subdir
-        self.overwrite = overwrite
-        self.verbose = verbose
+# -----------------------------
+# FETCH YOUTUBE METADATA
+# -----------------------------
+def fetch_youtube_info(url):
+    print(f"Fetching YouTube info for: {url}")
+    ydl_opts = {"quiet": True, "skip_download": True, "writesubtitles": False}
+    with YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(url, download=False)
+    return {
+        "title": info.get("title", "Untitled Video"),
+        "description": info.get("description", ""),
+        "upload_date": info.get("upload_date"),
+        "duration": info.get("duration"),
+        "thumbnail": info.get("thumbnail"),
+        "id": info.get("id"),
+        "uploader": info.get("uploader"),
+        "webpage_url": info.get("webpage_url"),
+    }
 
-        os.makedirs(content_dir, exist_ok=True)
-        self.full_post_dir = os.path.join(content_dir, post_subdir) if post_subdir else content_dir
-        os.makedirs(self.full_post_dir, exist_ok=True)
 
-    def log(self, msg: str):
-        if self.verbose:
-            print(msg)
+# -----------------------------
+# FETCH TRANSCRIPT
+# -----------------------------
+def fetch_transcript(video_id):
+    print("Fetching transcript...")
+    try:
+        resp = requests.get(f"https://youtubetranscript.com/?server_vid2={video_id}", timeout=10)
+        if resp.ok and "text" in resp.text:
+            return resp.text
+    except Exception as e:
+        print(f"⚠️ Transcript fetch failed: {e}")
+    return "Transcript unavailable."
 
-    # ------------------------------------------------------------
-    # YouTube metadata
-    # ------------------------------------------------------------
-    def fetch_youtube_info(self, url: str) -> Optional[Dict]:
-        """Fetch metadata (and transcript if available) from YouTube."""
-        self.log(f"Fetching YouTube info for: {url}")
-        try:
-            logging.getLogger("yt_dlp").setLevel(logging.ERROR)
-            ydl_opts = {
-                "quiet": True,
-                "skip_download": True,
-                "writesubtitles": True,
-                "writeautomaticsub": True,
-                "subtitleslangs": ["en"],
-            }
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                info = ydl.extract_info(url, download=False)
-                info["transcript_text"] = self.extract_transcript(info)
-                return info
-        except Exception as e:
-            print(f"Error fetching YouTube info: {e}", file=sys.stderr)
-            return None
 
-    # ------------------------------------------------------------
-    # Transcript parsing
-    # ------------------------------------------------------------
-    def extract_transcript(self, info: Dict) -> Optional[str]:
-        captions = info.get("subtitles") or info.get("automatic_captions") or {}
-        for lang in ["en", "en-US", "en-GB"]:
-            if lang in captions:
-                sub = captions[lang][0]
-                url = sub.get("url")
-                if not url:
-                    continue
-                try:
-                    raw = urllib.request.urlopen(url).read().decode("utf-8")
-                    return self.clean_transcript(raw)
-                except Exception:
-                    return None
+# -----------------------------
+# AI Narrative (Groq)
+# -----------------------------
+def generate_ai_narrative(title, summary, transcript_text):
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        print("⚠️ Missing GROQ_API_KEY environment variable. Skipping AI narrative.")
         return None
 
-    def clean_transcript(self, raw_vtt: str) -> str:
-        """Convert VTT to clean, narrative paragraphs."""
-        blocks = []
-        current_text = []
-        last_time = 0.0
+    print("🧠 Generating AI narrative via Groq...")
 
-        for line in raw_vtt.splitlines():
-            if line.startswith("WEBVTT") or not line.strip():
-                continue
+    prompt = textwrap.dedent(f"""
+    You are a skilled technology writer. Write a clear, human-like narrative article
+    based on the following video details.
 
-            # Timestamp pattern
-            time_match = re.match(r"(\d{2}):(\d{2}):(\d{2})\.\d+\s-->\s(\d{2}):(\d{2}):(\d{2})", line)
-            if time_match:
-                h, m, s = map(int, time_match.groups()[:3])
-                start_sec = h * 3600 + m * 60 + s
-                if start_sec - last_time > 3 and current_text:
-                    blocks.append(" ".join(current_text))
-                    current_text = []
-                last_time = start_sec
-                continue
+    Title: {title}
+    Summary: {summary}
 
-            text = re.sub(r"<[^>]+>", "", line).strip()
-            text = re.sub(r"^\d+$", "", text)
-            if text:
-                current_text.append(text)
+    Use the transcript below as source context, but rewrite it naturally and engagingly.
+    Include key insights and transitions. Use full paragraphs — no outline or bullet list
+    unless absolutely necessary.
 
-        if current_text:
-            blocks.append(" ".join(current_text))
+    Transcript excerpt:
+    {transcript_text[:8000]}
+    """)
 
-        formatted = []
-        buffer = ""
-        for para in blocks:
-            buffer += " " + para
-            if re.search(r"[.!?]$", para.strip()):
-                formatted.append(buffer.strip())
-                buffer = ""
-        if buffer.strip():
-            formatted.append(buffer.strip())
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
 
-        return "\n\n".join(formatted)
+    payload = {
+        "model": GROQ_MODEL,
+        "messages": [
+            {"role": "system", "content": "You are a professional blog writer for technical tutorials."},
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": 0.8,
+        "max_tokens": 1800,
+    }
 
-    # ------------------------------------------------------------
-    # Summary extraction
-    # ------------------------------------------------------------
-    def summarize_transcript(self, transcript: str, num_sentences: int = 3) -> str:
-        """Generate an AI-like summary using keyword scoring."""
-        if not transcript:
-            return ""
-
-        sentences = re.split(r'(?<=[.!?]) +', transcript)
-        if len(sentences) <= num_sentences:
-            return " ".join(sentences)
-
-        words = re.findall(r'\b[a-zA-Z]{3,}\b', transcript.lower())
-        freq = Counter(words)
-        total = sum(freq.values())
-
-        # Normalize frequencies
-        for w in freq:
-            freq[w] /= total
-
-        # Score sentences by keyword frequency
-        sentence_scores = {}
-        for sent in sentences:
-            words_in_sent = re.findall(r'\b[a-zA-Z]{3,}\b', sent.lower())
-            score = sum(freq[w] for w in words_in_sent if w in freq)
-            if len(words_in_sent) > 0:
-                sentence_scores[sent] = score / len(words_in_sent)
-
-        # Pick top N sentences
-        top_sentences = sorted(sentence_scores, key=sentence_scores.get, reverse=True)[:num_sentences]
-        summary = " ".join(sorted(top_sentences, key=lambda s: sentences.index(s)))
-
-        return summary.strip()
-
-    # ------------------------------------------------------------
-    # Front matter + thumbnail
-    # ------------------------------------------------------------
-    def _escape(self, s: str) -> str:
-        return s.replace("\\", "\\\\").replace('"', '\\"')
-
-    def generate_front_matter(self, title, date=None, summary=None, tags=None, author=None, extra=None):
-        date = date or datetime.now().strftime("%Y-%m-%d")
-        lines = [
-            "+++",
-            f'title = "{self._escape(title)}"',
-            f'date = "{date}"',
-        ]
-        if summary:
-            lines.append(f'summary = "{self._escape(summary)}"')
-        if tags:
-            lines.append(f"tags = [{', '.join(f'\"{self._escape(t)}\"' for t in tags)}]")
-        if author:
-            lines.append(f'author = "{self._escape(author)}"')
-        if extra:
-            lines.append("\n[extra]")
-            for k, v in extra.items():
-                if isinstance(v, str):
-                    lines.append(f'{k} = "{self._escape(v)}"')
-                else:
-                    lines.append(f"{k} = {json.dumps(v)}")
-        lines.append("+++\n")
-        return "\n".join(lines)
-
-    def download_thumbnail(self, info: Dict, dest_folder: str) -> Optional[str]:
-        thumb_url = info.get("thumbnail")
-        if not thumb_url:
-            return None
-        try:
-            filename = slugify(info.get("title", "thumbnail")) + os.path.splitext(thumb_url)[-1]
-            local_path = os.path.join(dest_folder, filename)
-            urllib.request.urlretrieve(thumb_url, local_path)
-            return os.path.relpath(local_path, start=self.content_dir)
-        except Exception as e:
-            self.log(f"Thumbnail download failed: {e}")
-            return None
-
-    # ------------------------------------------------------------
-    # File writer
-    # ------------------------------------------------------------
-    def save_post(self, filename, content):
-        path = os.path.join(self.full_post_dir, filename)
-        if os.path.exists(path) and not self.overwrite:
-            print(f"⚠️  File exists, skipping: {path}")
-            return
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(content)
-        print(f"✅ Saved post: {path}")
-
-    def create_post_from_youtube(self, url):
-        info = self.fetch_youtube_info(url)
-        if not info:
-            print("Failed to fetch metadata.", file=sys.stderr)
-            return
-
-        title = info.get("title", "Untitled")
-        description = info.get("description", "").strip()
-        upload_date = info.get("upload_date")
-        date = datetime.strptime(upload_date, "%Y%m%d").strftime("%Y-%m-%d") if upload_date else None
-        tags = info.get("tags", [])
-        author = info.get("uploader")
-        video_id = info.get("id")
-        video_url = f"https://www.youtube.com/watch?v={video_id}"
-        transcript = info.get("transcript_text")
-
-        # AI-style summary
-        summary_text = self.summarize_transcript(transcript)
-
-        # Thumbnail
-        thumbnail_rel_path = self.download_thumbnail(info, self.full_post_dir)
-
-        front = self.generate_front_matter(
-            title=title,
-            date=date,
-            summary=summary_text or description.split("\n")[0],
-            tags=tags,
-            author=author,
-            extra={
-                "youtube_url": video_url,
-                "duration": info.get("duration"),
-                "thumbnail": thumbnail_rel_path or info.get("thumbnail"),
-            },
-        )
-
-        # Build Markdown
-        image_block = f"![{title}]({thumbnail_rel_path or info.get('thumbnail')})\n\n" if (thumbnail_rel_path or info.get('thumbnail')) else ""
-        summary_section = f"\n## Summary\n\n{summary_text}\n" if summary_text else ""
-        transcript_section = f"\n## Transcript\n\n{transcript}" if transcript else ""
-
-        content = f"""{front}
-{image_block}
-<div class="youtube-embed">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/{video_id}" frameborder="0" allowfullscreen></iframe>
-</div>
-
-[Watch on YouTube]({video_url})
-
-{summary_section}
-{transcript_section}
-"""
-        filename = f"{slugify(title)}.md"
-        self.save_post(filename, content)
+    try:
+        resp = requests.post(GROQ_API_URL, headers=headers, json=payload, timeout=90)
+        resp.raise_for_status()
+        data = resp.json()
+        content = data["choices"][0]["message"]["content"].strip()
+        print("✅ AI narrative generated successfully.")
+        return content
+    except Exception as e:
+        print(f"❌ Groq API failed: {e}")
+        return None
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Generate Markdown posts from YouTube videos (with summary + transcript).")
-    parser.add_argument("--youtube", help="YouTube video URL")
-    parser.add_argument("--content-dir", default="content")
-    parser.add_argument("--post-subdir", default="blog")
-    parser.add_argument("--overwrite", action="store_true")
+# -----------------------------
+# SAVE MARKDOWN POST
+# -----------------------------
+def save_markdown(metadata, transcript_text, ai_article=None):
+    slug = slugify(metadata["title"])
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    filename = f"{CONTENT_DIR}/{slug}.md"
+
+    os.makedirs(CONTENT_DIR, exist_ok=True)
+    os.makedirs(THUMBNAIL_DIR, exist_ok=True)
+
+    # Download thumbnail
+    thumb_filename = f"{THUMBNAIL_DIR}/{slug}.jpg"
+    try:
+        if metadata["thumbnail"]:
+            r = requests.get(metadata["thumbnail"], timeout=10)
+            with open(thumb_filename, "wb") as f:
+                f.write(r.content)
+    except Exception as e:
+        print(f"⚠️ Failed to download thumbnail: {e}")
+
+    md = textwrap.dedent(f"""\
+    +++
+    title = "{metadata['title']}"
+    date = "{date_str}"
+    summary = "{metadata['description'][:160].replace('"', "'")}"
+    tags = ["zola", "youtube", "automation", "jamstack"]
+    author = "{metadata.get('uploader', 'Unknown')}"
+
+    [extra]
+    youtube_url = "{metadata['webpage_url']}"
+    duration = {metadata.get('duration', 0)}
+    thumbnail = "blog/{slug}.jpg"
+    +++
+
+    ![{metadata['title']}]({{static}}/blog/{slug}.jpg)
+
+    <div class="youtube-embed">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{metadata['id']}" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    [Watch on YouTube]({metadata['webpage_url']})
+
+    ## Key Points
+    - Tutorial video on {metadata['title']}
+    - Covers key techniques for Zola / JAMstack
+    - Duration: {int(metadata.get('duration') or 0) // 60} minutes
+    - Author: {metadata.get('uploader', 'Unknown')}
+
+    ## AI-Written Narrative
+    {ai_article or '_AI narrative unavailable. Check GROQ_API_KEY configuration._'}
+
+    ## Transcript
+    {transcript_text}
+    """)
+
+    with open(filename, "w") as f:
+        f.write(md)
+    print(f"✅ Markdown saved: {filename}")
+
+
+# -----------------------------
+# MAIN EXECUTION
+# -----------------------------
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Generate Markdown blog post from YouTube video.")
+    parser.add_argument("--youtube", required=True, help="YouTube video URL")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
 
-    generator = PostGenerator(args.content_dir, args.post_subdir, args.overwrite, args.verbose)
-    if args.youtube:
-        generator.create_post_from_youtube(args.youtube)
-    else:
-        print("Usage: --youtube <URL>")
-
-
-if __name__ == "__main__":
-    main()
+    meta = fetch_youtube_info(args.youtube)
+    transcript = fetch_transcript(meta["id"])
+    ai_article = generate_ai_narrative(meta["title"], meta["description"], transcript)
+    save_markdown(meta, transcript, ai_article)
+    print("🚀 Blog post generation complete!")
