@@ -179,28 +179,45 @@ If you've explored the project files, you might have noticed a Python script tuc
 
 ### What's a Helper Script?
 
-In many development projects, you'll find scripts that aren't part of the final website but help with tasks during development. Our `generate_posts.py` is exactly that—a helper. Its main job is to save us time.
+In many development projects, you'll find scripts that aren't part of the final website but help with tasks during development. Our `generate_posts.py` is exactly that—a helper. Its main job is to save us time by automating content creation from YouTube videos.
 
 ### What Does It Do?
 
-In simple terms, the script automatically creates new blog post files for us. Here's a step-by-step breakdown:
+The script automatically creates blog posts from YouTube videos with AI-style summaries and transcripts. Here's a step-by-step breakdown:
 
-1. **Fetches Content from the Web**: The script connects to a free online service (`jsonplaceholder.typicode.com`) that provides placeholder text. Think of it as a "fake" blog API. It asks this service for a few sample posts, each with a title and some body text.
+1. **Fetches YouTube Data**: The script uses `yt-dlp` to fetch video metadata, thumbnails, and transcripts from any YouTube video URL you provide.
 
-2. **Formats the Post for Zola**: Zola needs a specific format for its content files. Each post must start with a section enclosed in `+++`, which is called "front matter." This section contains metadata like the `title`, `date`, and `description`. The script builds this front matter automatically.
+2. **Generates AI-Style Summaries**: Using keyword weighting and sentence scoring algorithms, the script analyzes the transcript and extracts the most representative sentences to create a natural, human-like summary (typically 2-3 sentences).
 
-3. **Creates the Markdown File**: For each post it fetches, the script creates a new `.md` file in the `content/blog/` directory. The filename is based on the post's title (e.g., "My First Post" becomes `my-first-post.md`).
+3. **Processes Transcripts**: Raw VTT subtitle files are cleaned and formatted into readable paragraphs, grouping related sentences and removing timestamps.
+
+4. **Creates Zola-Compatible Posts**: Each generated post includes:
+   - Front matter with title, date, AI-generated summary, tags, and author
+   - Embedded YouTube video iframe
+   - Thumbnail image
+   - Summary section with extracted key points
+   - Full transcript section
+
+5. **Saves to Content Directory**: The script creates a properly formatted Markdown file in `content/blog/` with a slugified filename based on the video title.
 
 ### Why Is This Useful?
 
-Imagine you're designing your blog's layout and you want to see how it looks with 10, 20, or even 50 posts. Creating all those files by hand would be tedious!
+This script transforms YouTube content into blog posts automatically, making it perfect for:
+- Content creators who want to repurpose YouTube videos as blog articles
+- Educational content where transcripts provide searchable text
+- SEO benefits from having full text content
+- Quick content generation without manual transcription
+- Creating multimedia blog posts with embedded videos
 
-With this script, you can generate any number of sample posts with a single command. It allows you to:
-- Quickly populate the blog with content for testing
-- See how your index page handles many posts
-- Test styling and layout without needing real content
+The AI-style summary generation works offline using frequency analysis and sentence scoring - no external AI APIs required!
 
-So, while it's not part of the Zola site itself, this Python script is a valuable tool for making the development process smoother and faster.
+### Usage
+
+```bash
+python scripts/generate_posts.py --youtube "https://www.youtube.com/watch?v=VIDEO_ID"
+```
+
+So, while it's not part of the Zola site itself, this Python script is a powerful tool for content automation and multimedia blogging.
 
 ## Standard Operating Procedure: Creating a New Blog Post
 

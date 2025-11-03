@@ -39,4 +39,18 @@ The main configuration is in `config.toml`, specifying the base URL, title, desc
 
 ## Scripts
 
-There's a Python script in `scripts/generate_posts.py` to generate new blog posts. The script can be used to generate a single post with a title and content.
+There's a Python script in `scripts/generate_posts.py` to generate new blog posts from YouTube videos. The script automatically:
+
+- Fetches video metadata, thumbnails, and transcripts from YouTube
+- Generates an AI-style summary using keyword weighting and sentence scoring
+- Creates clean, paragraph-formatted transcripts
+- Produces Zola-compatible Markdown posts with proper front matter
+
+Usage: `python scripts/generate_posts.py --youtube <YouTube_URL>`
+
+Each generated post includes:
+- Front matter with title, date, AI-generated summary, tags, and author
+- Embedded YouTube video iframe
+- Thumbnail image
+- Summary section with extracted key points
+- Full transcript section
