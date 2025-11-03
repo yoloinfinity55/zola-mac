@@ -10,7 +10,7 @@
   <h2 style="text-align:center; font-weight:300; margin-bottom:2rem;">Latest Posts</h2>
   {% set blog_section = get_section(path="blog/_index.md") %}
   <ul>
-    {% for post in blog_section.pages | sort(attribute="date") | reverse | slice(end=5) %}
+    {% for post in blog_section.pages | sort(attribute="date") | reverse | slice(end=section.paginate_by) %}
       <li class="post-item" style="margin-bottom:1.5rem;">
         <h3 class="post-title">
           <a href="{{ post.permalink }}">{{ post.title }}</a>

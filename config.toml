@@ -3,6 +3,7 @@ title = "Zola-mac"
 description = "A blog about building beautiful static sites with Zola on macOS."
 compile_sass = false
 build_search_index = false
+ignored_content = ["blog/archive/*.md"]
 
 taxonomies = [
     { name = "tags", feed = true }

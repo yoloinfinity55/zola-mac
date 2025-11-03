@@ -1,6 +1,6 @@
 +++
 title = "Project Specification for Zola-mac"
-date = "2025-11-02"
+date = "2025-11-03"
 summary = "This document outlines the specification for the Zola-mac project."
 +++
 
@@ -8,49 +8,95 @@ This document outlines the specification for the Zola-mac project.
 
 ## Project Overview
 
-Zola-mac is a blog built with the Zola static site generator. It's designed to be a simple, clean, and fast blog that's easy to maintain and deploy.
+Zola-mac is a modern, professional blog focused on building beautiful static sites with the Zola static site generator on macOS. The project combines manual content creation with automated AI-powered content generation from YouTube videos, creating a comprehensive resource for developers learning Zola and Jamstack technologies.
 
 ## Project Structure
 
-The project is organized into the following directories:
+The project follows Zola's standard directory structure with enhancements for automation:
 
-- **content:** Contains the markdown files for the blog posts.
-- **templates:** Contains the HTML templates for rendering the site.
-- **static:** Contains static assets like CSS, images, etc.
-- **scripts:** Contains a Python script for generating posts.
-- **config.toml:** The main configuration file for the Zola site.
+- **content/:** Contains markdown content organized as page bundles
+  - `content/_index.md` - Homepage content
+  - `content/blog/` - Blog posts and section index
+  - Each post is a page bundle with `index.md`, `asset.jpg`, and `asset.mp3`
+- **templates/:** Custom HTML templates using Tera templating
+  - `base.html` - Main layout with modern responsive design
+  - `index.html` - Homepage template
+  - `blog.html` - Blog listing template
+  - `page.html` - Individual page template
+- **scripts/:** Automation tools
+  - `generate_posts.py` - AI-powered YouTube content generator
+  - `archive/` - Legacy script versions
+- **config.toml:** Zola configuration with taxonomies and build settings
+- **requirements.txt:** Python dependencies for automation scripts
 
-## Content
+## Content Management
 
-Blog posts are located in `content/blog` and written in Markdown. Each post has a front matter section with the title, date, and summary.
+The blog supports two content creation workflows:
 
-## Templates
+### Manual Content Creation
+- Standard Markdown posts in `content/blog/`
+- Front matter with title, date, summary, and tags
+- Optional page bundles for rich media content
 
-The site uses standard Zola HTML templates located in the `templates` directory. The templates are:
+### Automated Content Generation
+- YouTube video processing with AI enhancement
+- Generates complete page bundles with multimedia assets
+- AI-powered summaries, transcripts, and social media content
 
-- **base.html:** The main template.
-- **index.html:** The template for the homepage.
-- **blog.html:** The template for the blog section.
-- **page.html:** The template for individual pages.
+## Templates & Design
+
+The site features a modern, clean design optimized for readability:
+
+- **Typography:** Inter font family for professional appearance
+- **Layout:** Fixed navigation, responsive grid system
+- **Media Support:** YouTube embeds, audio players, image galleries
+- **Code Highlighting:** Syntax highlighting for technical content
+- **Accessibility:** Semantic HTML, keyboard navigation, screen reader support
 
 ## Configuration
 
-The main configuration is in `config.toml`, specifying the base URL, title, description, and Markdown options.
+Advanced Zola configuration includes:
+- GitHub Pages deployment (`https://yoloinfinity55.github.io/zola-mac/`)
+- Tag-based taxonomies for content organization
+- Markdown processing with code highlighting
+- Content pagination (5 posts per page)
+- Build optimization settings
 
-## Scripts
+## Automation Features
 
-There's a Python script in `scripts/generate_posts.py` to generate new blog posts from YouTube videos. The script automatically:
+The `scripts/generate_posts.py` script provides comprehensive automation:
 
-- Fetches video metadata, thumbnails, and transcripts from YouTube
-- Generates an AI-style summary using keyword weighting and sentence scoring
-- Creates clean, paragraph-formatted transcripts
-- Produces Zola-compatible Markdown posts with proper front matter
+### Core Functionality
+- YouTube metadata extraction and thumbnail download
+- Audio extraction and intelligent chunking for large files
+- AI-powered transcription using Groq API
+- Multi-step content generation pipeline
 
-Usage: `python scripts/generate_posts.py --youtube <YouTube_URL>`
+### AI-Generated Content
+- **Structured Summaries:** Step-by-step breakdowns and key insights
+- **Human-like Articles:** Conversational, comprehensive narratives
+- **Social Media Posts:** Optimized tweets for promotion
+- **Smart Transcripts:** Clean, formatted audio transcripts
 
-Each generated post includes:
-- Front matter with title, date, AI-generated summary, tags, and author
-- Embedded YouTube video iframe
-- Thumbnail image
-- Summary section with extracted key points
-- Full transcript section
+### Technical Features
+- FFmpeg integration for audio processing
+- Error handling and retry logic
+- Environment variable configuration
+- Progress logging and status updates
+
+## Dependencies
+
+Python requirements for automation:
+- `requests` - HTTP client for API calls
+- `yt-dlp` - YouTube video processing
+- `python-slugify` - URL-friendly slug generation
+- `python-dotenv` - Environment variable management
+- `pydub` - Audio processing utilities
+
+## Deployment & Maintenance
+
+- **Hosting:** GitHub Pages for free static hosting
+- **Build Process:** `zola build` for static site generation
+- **Development:** `zola serve` for local development server
+- **Version Control:** Git-based workflow with comprehensive .gitignore
+- **Content Strategy:** Mix of manual tutorials and automated video content
