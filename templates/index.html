@@ -6,31 +6,41 @@
   <p>{{ config.description }}</p>
 </div>
 
-<div class="post-list">
+<div class="home-posts-section">
   <h2 class="section-heading">Latest Posts</h2>
   {% set blog_section = get_section(path="blog/_index.md") %}
-  <ul>
-    {% for post in blog_section.pages | sort(attribute="date") | reverse | slice(end=15) %}
-      <li class="post-item">
-        <h3 class="post-title">
-          <a href="{{ post.permalink }}">{{ post.title }}</a>
-        </h3>
-        <p class="post-meta">{{ post.date | date(format="%B %e, %Y") }}</p>
-        {% if post.summary %}
-          <p class="post-summary">{{ post.summary | safe }}</p>
-        {% endif %}
-      </li>
-    {% else %}
-      <p class="no-posts">No posts found.</p>
-    {% endfor %}
-  </ul>
   
-  {% if blog_section.pages | length > 5 %}
-    <div class="view-all">
-      <a href="{{ get_url(path='blog') }}" class="view-all-btn">
-        View all posts <span>→</span>
-      </a>
+  {% if blog_section.pages %}
+    <div class="posts-grid">
+      {% for post in blog_section.pages | sort(attribute="date") | reverse | slice(end=6) %}
+        <article class="post-card">
+          <div class="post-card-content">
+            <h3 class="post-card-title">
+              <a href="{{ post.permalink }}">{{ post.title }}</a>
+            </h3>
+            <p class="post-card-meta">{{ post.date | date(format="%B %e, %Y") }}</p>
+            {% if post.summary %}
+              <p class="post-card-excerpt">{{ post.summary | safe }}</p>
+            {% endif %}
+          </div>
+          <div class="post-card-footer">
+            <a href="{{ post.permalink }}" class="read-more-link">
+              Read more <span>→</span>
+            </a>
+          </div>
+        </article>
+      {% endfor %}
     </div>
+    
+    {% if blog_section.pages | length > 6 %}
+      <div class="view-all">
+        <a href="{{ get_url(path='blog') }}" class="view-all-btn">
+          View all posts <span>→</span>
+        </a>
+      </div>
+    {% endif %}
+  {% else %}
+    <p class="no-posts">No posts found.</p>
   {% endif %}
 </div>
 {% endblock content %}
