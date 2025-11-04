@@ -2,26 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ config.title }}{% if page.title %} | {{ page.title }}{% endif %}</title>
-    <meta name="description" content="{{ page.description | default(value=config.description) }}">
+    <title>Zola-mac | Project Specification for Zola-mac Blog</title>
+    <meta name="description" content="A blog about building beautiful static sites with Zola on macOS.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ get_url(path='css/style.css') }}">
-
-    <!-- Favicon (optional) -->
-    <link rel="icon" href="{{ get_url(path='favicon.ico') }}">
   </head>
 
   <body>
     <header>
-      <h1><a href="{{ get_url(path='/') }}">Zola-mac</a></h1>
+      <h1><a href="{{ get_url(path="/") }}">Zola-mac</a></h1>
       <nav>
-        <a href="{{ get_url(path='/') }}">Home</a>
-        <a href="{{ get_url(path='blog') }}">Blog</a>
+        <a href="{{ get_url(path="/") }}">Home</a>
+        <a href="{{ get_url(path="blog") }}">Blog</a>
       </nav>
     </header>
 
@@ -34,19 +29,31 @@
 
     <footer>
       <div class="social-links">
-        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a>
-        <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" target="_blank">GitHub</a>
+        <a href="#" target="_blank">Twitter</a>
+        <a href="#" target="_blank">LinkedIn</a>
       </div>
-      <p>© {{ now() | date(format="%Y") }} {{ config.title }}. Built with ❤️ using Zola.</p>
+      <p>© 2025 Zola-mac. Built with ❤️ using Zola.</p>
     </footer>
 
     <button id="back-to-top" title="Go to top">↑</button>
 
-    <!-- Scripts -->
-    <script src="{{ get_url(path='js/main.js') }}"></script>
-    {% if config.extra.livereload | default(value=true) %}
-    <script src="/livereload.js?port=1024&mindelay=10"></script>
-    {% endif %}
+    <script>
+      // Back to Top Button
+      const backToTopButton = document.getElementById("back-to-top");
+
+      window.onscroll = function() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+          backToTopButton.style.display = "block";
+        } else {
+          backToTopButton.style.display = "none";
+        }
+      };
+
+      backToTopButton.onclick = function() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      };
+    </script>
   </body>
 </html>
