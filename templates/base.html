@@ -2,221 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Zola-mac | Project Specification for Zola-mac Blog</title>
-    <meta name="description" content="A blog about building beautiful static sites with Zola on macOS.">
+    <title>{{ config.title }}{% if page.title %} | {{ page.title }}{% endif %}</title>
+    <meta name="description" content="{{ page.description | default(value=config.description) }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --blue: #007bff;
-        --gray: #f9f9f9;
-        --dark: #333;
-        --light-gray: #f1f1f1;
-      }
+    <link rel="stylesheet" href="{{ get_url(path='css/style.css') }}">
 
-      body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: var(--light-gray);
-        color: var(--dark);
-        line-height: 1.6;
-      }
-
-      /* ===== Fixed Navbar ===== */
-      header {
-        background: #fff;
-        color: var(--dark);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 3rem; /* Increased right padding */
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      }
-      header h1 {
-        margin: 0;
-        font-size: 1.4rem;
-      }
-      header h1 a {
-        color: var(--dark);
-        text-decoration: none;
-      }
-      nav {
-        display: flex;
-        gap: 2rem; /* Increased gap between nav items */
-      }
-      nav a {
-        color: var(--dark);
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s;
-      }
-      nav a:hover {
-        color: var(--blue);
-        text-decoration: none;
-      }
-
-      /* ===== Main Content ===== */
-      main.container {
-        max-width: 800px;
-        margin: 8rem auto 2rem auto;
-        padding: 2.5rem;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      }
-
-      /* ===== Blog Post Styling ===== */
-      .post-content h1, .post-content h2, .post-content h3 {
-        color: var(--dark);
-        margin-top: 2rem;
-      }
-      .post-content p {
-        margin-bottom: 1.2rem;
-        line-height: 1.7;
-      }
-      .post-content a {
-        color: var(--blue);
-      }
-
-      .youtube-embed {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        height: 0;
-        overflow: hidden;
-        margin-bottom: 1.5rem;
-      }
-      .youtube-embed iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
-
-      /* ===== Code Block Styling ===== */
-      .post-content pre {
-        background: var(--gray);
-        padding: 1rem;
-        border-radius: 6px;
-        overflow-x: auto;
-        overflow-wrap: break-word;
-        white-space: pre-wrap;
-        word-break: break-all;
-        margin: 1.5rem 0;
-        font-size: 0.9rem;
-        line-height: 1.4;
-      }
-      .post-content code {
-        background: var(--gray);
-        padding: 0.2rem 0.4rem;
-        border-radius: 3px;
-        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        font-size: 0.85rem;
-      }
-      .post-content pre code {
-        background: none;
-        padding: 0;
-        border-radius: 0;
-        font-size: inherit;
-      }
-
-      footer {
-        text-align: center;
-        padding: 2.5rem;
-        color: #888;
-        font-size: 0.9rem;
-      }
-      .social-links a {
-        margin: 0 0.5rem;
-        color: #888;
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .social-links a:hover {
-        color: var(--blue);
-      }
-
-      .post-list ul {
-        list-style: none;
-        padding: 0;
-      }
-      .post-list li {
-        margin-bottom: 1.5rem;
-      }
-      .post-list a {
-        color: var(--blue);
-        font-weight: 600;
-        text-decoration: none;
-      }
-      .post-list a:hover {
-        text-decoration: underline;
-      }
-
-      /* ===== Back to Top Button ===== */
-      #back-to-top {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: var(--blue);
-        color: #fff;
-        border: none;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-        cursor: pointer;
-        display: none;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: opacity 0.3s, visibility 0.3s;
-      }
-
-      /* ===== Responsive Images ===== */
-      .post-content img {
-        max-width: 100%;
-        height: auto;
-        display: block; /* Prevents extra space below images */
-        margin: 1rem auto; /* Centers images and adds vertical spacing */
-      }
-
-      /* ===== Responsive ===== */
-      @media (max-width: 768px) {
-        header {
-          padding: 1rem 2rem; /* Adjusted right padding */
-        }
-        main.container {
-          margin-top: 7rem;
-          padding: 2rem;
-        }
-      }
-      @media (max-width: 600px) {
-        header {
-          flex-direction: column;
-          text-align: center;
-          padding: 1rem 1.5rem; /* Adjusted right padding */
-        }
-        nav {
-          margin-top: 0.5rem;
-        }
-      }
-    </style>
+    <!-- Favicon (optional) -->
+    <link rel="icon" href="{{ get_url(path='favicon.ico') }}">
   </head>
 
   <body>
     <header>
-      <h1><a href="{{ get_url(path="/") }}">Zola-mac</a></h1>
+      <h1><a href="{{ get_url(path='/') }}">Zola-mac</a></h1>
       <nav>
-        <a href="{{ get_url(path="/") }}">Home</a>
-        <a href="{{ get_url(path="blog") }}">Blog</a>
+        <a href="{{ get_url(path='/') }}">Home</a>
+        <a href="{{ get_url(path='blog') }}">Blog</a>
       </nav>
     </header>
 
@@ -229,32 +34,19 @@
 
     <footer>
       <div class="social-links">
-        <a href="#" target="_blank">GitHub</a>
-        <a href="#" target="_blank">Twitter</a>
-        <a href="#" target="_blank">LinkedIn</a>
+        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-      <p>© 2025 Zola-mac. Built with ❤️ using Zola.</p>
+      <p>© {{ now() | date(format="%Y") }} {{ config.title }}. Built with ❤️ using Zola.</p>
     </footer>
 
     <button id="back-to-top" title="Go to top">↑</button>
 
-    <script>
-      // Back to Top Button
-      const backToTopButton = document.getElementById("back-to-top");
-
-      window.onscroll = function() {
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-          backToTopButton.style.display = "block";
-        } else {
-          backToTopButton.style.display = "none";
-        }
-      };
-
-      backToTopButton.onclick = function() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-      };
-    </script>
-    <script src="/livereload.js?port=1024&amp;mindelay=10"></script>
+    <!-- Scripts -->
+    <script src="{{ get_url(path='js/main.js') }}"></script>
+    {% if config.extra.livereload | default(value=true) %}
+    <script src="/livereload.js?port=1024&mindelay=10"></script>
+    {% endif %}
   </body>
 </html>

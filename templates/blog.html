@@ -1,29 +1,61 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ section.title }}</h1>
+<div class="blog-header">
+  <h1>{{ section.title }}</h1>
+  <p>Exploring static site generation with Zola</p>
+</div>
 
-{% if paginator %}
-  {% for page in paginator.pages %}
-    <h2><a href="{{ page.permalink }}">{{ page.title }}</a></h2>
-    <p><small>{{ page.date | date(format="%B %e, %Y") }}</small></p>
-    {% if page.summary %}
-      <p>{{ page.summary | safe }}</p>
-    {% endif %}
-  {% endfor %}
+<div class="blog-posts">
+  {% if paginator %}
+    {% for page in paginator.pages %}
+      <article class="blog-post-card">
+        <div class="post-card-header">
+          <h2 class="post-card-title">
+            <a href="{{ page.permalink }}">{{ page.title }}</a>
+          </h2>
+          <p class="post-meta">{{ page.date | date(format="%B %e, %Y") }}</p>
+        </div>
+        {% if page.summary %}
+          <p class="post-card-summary">{{ page.summary | safe }}</p>
+        {% endif %}
+        <a href="{{ page.permalink }}" class="read-more">
+          Read more <span>→</span>
+        </a>
+      </article>
+    {% endfor %}
 
-  <nav style="margin-top:2rem; text-align:center;">
-    {% if paginator.previous %}
-      <a href="{{ paginator.previous }}">← Newer posts</a>
-    {% endif %}
-    {% if paginator.next %}
-      <a href="{{ paginator.next }}" style="margin-left:2rem;">Older posts →</a>
-    {% endif %}
-  </nav>
-{% else %}
-  {% for page in section.pages %}
-    <h2><a href="{{ page.permalink }}">{{ page.title }}</a></h2>
-    <p><small>{{ page.date | date(format="%B %e, %Y") }}</small></p>
-  {% endfor %}
-{% endif %}
+    <nav class="pagination-nav">
+      {% if paginator.previous %}
+        <a href="{{ paginator.previous }}" class="pagination-btn prev-btn">
+          <span>←</span> Newer posts
+        </a>
+      {% else %}
+        <span class="pagination-placeholder"></span>
+      {% endif %}
+      {% if paginator.next %}
+        <a href="{{ paginator.next }}" class="pagination-btn next-btn">
+          Older posts <span>→</span>
+        </a>
+      {% endif %}
+    </nav>
+  {% else %}
+    {% for page in section.pages %}
+      <article class="blog-post-card">
+        <div class="post-card-header">
+          <h2 class="post-card-title">
+            <a href="{{ page.permalink }}">{{ page.title }}</a>
+          </h2>
+          <p class="post-meta">{{ page.date | date(format="%B %e, %Y") }}</p>
+        </div>
+        {% if page.summary %}
+          <p class="post-card-summary">{{ page.summary | safe }}</p>
+        {% endif %}
+        <a href="{{ page.permalink }}" class="read-more">
+          Read more <span>→</span>
+        </a>
+      </article>
+    {% endfor %}
+  {% endif %}
+</div>
 {% endblock content %}
