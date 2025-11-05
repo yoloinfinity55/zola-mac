@@ -1,7 +1,10 @@
 +++
 title = "Zola tutorial #4: Adding content and custom templates | Static site generator | Jamstack"
 date = "2025-11-03"
-tags = ["zola", "jamstack", "staticsitegenerator", "itcracy", "tera"]
+tags = [ "zola", "jamstack", "staticsitegenerator", "itcracy", "tera",]
+
+[extra]
+youtube_id = "a396bhOCnVc"
 +++
 ![Zola tutorial #4: Adding content and custom templates | Static site generator | Jamstack](./asset.jpg)
 

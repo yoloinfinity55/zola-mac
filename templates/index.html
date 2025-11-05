@@ -6,6 +6,14 @@
   <p>{{ config.description }}</p>
 </div>
 
+
+<script>
+    var main_writer = new Typewriter(document.getElementById('main-line'), {
+        strings: ['Hello', 'World'],
+        autoStart: true,
+	});
+</script>
+
 <div class="home-posts-section">
   <h2 class="section-heading">Latest Posts</h2>
   {% set blog_section = get_section(path="blog/_index.md") %}

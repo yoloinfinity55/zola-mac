@@ -1,7 +1,10 @@
 +++
 title = "Zola tutorial #7: Deploying to gitlab pages | Static site generator | Jamstack"
 date = "2025-11-03"
-tags = ["zola", "staticsitegenerator", "gitlab", "jamstack", "deployment"]
+tags = [ "zola", "staticsitegenerator", "gitlab", "jamstack", "deployment",]
+
+[extra]
+youtube_id = "R_dKhFDfI4E"
 +++
 ![Zola tutorial #7: Deploying to gitlab pages | Static site generator | Jamstack](./asset.jpg)
 

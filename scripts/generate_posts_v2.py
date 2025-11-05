@@ -23,13 +23,15 @@ import time
 from typing import Optional, Dict, Any, List
 import logging
 import json
+from PIL import Image
+import io
+from dotenv import load_dotenv
+from urllib.parse import urlparse, parse_qs, urlunparse, urlencode
 
 # -----------------------------
 # CONFIGURATION
 # -----------------------------
 CONTENT_DIR = "content/blog"
-THUMBNAIL_DIR = "static/blog"
-AUDIO_DIR = "static/blog"
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "llama-3.3-70b-versatile"
 MAX_RETRIES = 3
@@ -67,11 +69,32 @@ def format_duration(seconds: int) -> str:
     return f"{secs}s"
 
 
-def parse_upload_date(upload_date: str) -> str:
+def parse_upload_date(upload_date: Optional[str]) -> str:
     """Convert YYYYMMDD to YYYY-MM-DD."""
     if upload_date and len(upload_date) == 8:
         return f"{upload_date[:4]}-{upload_date[4:6]}-{upload_date[6:]}"
     return datetime.now().strftime("%Y-%m-%d")
+
+
+def clean_youtube_url(url: str) -> str:
+    """Strips playlist parameters (list, index) from a YouTube URL."""
+    parsed_url = urlparse(url)
+    query_params = parse_qs(parsed_url.query)
+
+    # Keep only the 'v' parameter (video ID) and rebuild the query string
+    new_query = {}
+    if 'v' in query_params:
+        new_query['v'] = query_params['v']
+
+    cleaned_url = urlunparse(
+        parsed_url._replace(query=urlencode(new_query, doseq=True))
+    )
+
+    if not new_query and 'youtu.be' not in parsed_url.netloc:
+        return url
+
+    logger.info(f"Cleaned URL: {cleaned_url}")
+    return cleaned_url
 
 
 def categorize_video(categories: List[str], tags: List[str], title: str, description: str) -> List[str]:
@@ -120,22 +143,20 @@ def categorize_video(categories: List[str], tags: List[str], title: str, descrip
 # -----------------------------
 def fetch_youtube_info(url: str) -> Optional[Dict[str, Any]]:
     """Fetch comprehensive YouTube video metadata."""
-    logger.info(f"Fetching YouTube info for: {url}")
-    
+    clean_url = clean_youtube_url(url)
+    logger.info(f"Fetching YouTube info for: {clean_url}")
+
     ydl_opts = {
         "quiet": True,
         "skip_download": True,
-        "writesubtitles": True,
-        "writeautomaticsub": True,
-        "subtitleslangs": ["en"],
+        "writesubtitles": False,
         "no_warnings": True,
-        "extract_flat": False,
     }
-    
+
     try:
         with YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=False)
-        
+            info = ydl.extract_info(clean_url, download=False)
+
         # Extract chapters if available
         chapters = []
         if info.get('chapters'):
@@ -147,14 +168,21 @@ def fetch_youtube_info(url: str) -> Optional[Dict[str, Any]]:
                 }
                 for ch in info['chapters']
             ]
-        
-        # Get best quality info
+
+        # Get best quality info (may not be available with minimal options)
         formats = info.get('formats', [])
-        best_audio = next((f for f in formats if f.get('acodec') != 'none' and f.get('vcodec') == 'none'), {})
-        best_video = next((f for f in formats if f.get('vcodec') != 'none' and f.get('height', 0) >= 720), {})
-        
-        # Extract subtitles info
-        subtitles_available = list(info.get('subtitles', {}).keys()) or list(info.get('automatic_captions', {}).keys())
+        best_audio = {}
+        best_video = {}
+        if formats:
+            best_audio = next((f for f in formats if f.get('acodec') != 'none' and f.get('vcodec') == 'none'), {})
+            best_video = next((f for f in formats if f.get('vcodec') != 'none' and f.get('height', 0) >= 720), {})
+
+        # Extract subtitles info (may not be available with minimal options)
+        subtitles_available = []
+        if info.get('subtitles'):
+            subtitles_available = list(info.get('subtitles', {}).keys())
+        elif info.get('automatic_captions'):
+            subtitles_available = list(info.get('automatic_captions', {}).keys())
         
         return {
             "title": info.get("title", "Untitled Video"),
@@ -174,6 +202,7 @@ def fetch_youtube_info(url: str) -> Optional[Dict[str, Any]]:
             "comment_count": info.get("comment_count", 0),
             "age_limit": info.get("age_limit", 0),
             "is_live": info.get("is_live", False),
+            "embeddable": info.get("embeddable", True),
             "chapters": chapters,
             "subtitles_available": subtitles_available,
             "resolution": best_video.get("height", "Unknown"),
@@ -331,9 +360,9 @@ def generate_ai_narrative(metadata: Dict[str, Any], transcript_text: str) -> Opt
 # DOWNLOAD ASSETS
 # -----------------------------
 def download_thumbnail(url: str, filepath: str) -> bool:
-    """Download highest quality thumbnail."""
+    """Download thumbnail with retry logic."""
     logger.info(f"Downloading thumbnail to {filepath}")
-    
+
     for attempt in range(MAX_RETRIES):
         try:
             resp = requests.get(url, timeout=15)
@@ -346,7 +375,7 @@ def download_thumbnail(url: str, filepath: str) -> bool:
             logger.warning(f"Thumbnail download attempt {attempt + 1}/{MAX_RETRIES} failed: {e}")
             if attempt < MAX_RETRIES - 1:
                 time.sleep(RETRY_DELAY)
-    
+
     logger.error("❌ Failed to download thumbnail after all retries")
     return False
 
@@ -397,20 +426,21 @@ def generate_chapters_markdown(chapters: List[Dict]) -> str:
 # SAVE ENHANCED MARKDOWN POST
 # -----------------------------
 def save_markdown(metadata: Dict[str, Any], transcript_text: str, ai_article: Optional[str] = None) -> str:
-    """Save enhanced markdown post with rich metadata."""
+    """Save enhanced markdown post with rich metadata in a dedicated folder."""
     slug = slugify(metadata["title"])
     date_str = parse_upload_date(metadata.get("upload_date"))
-    filename = Path(CONTENT_DIR) / f"{slug}.md"
     
-    # Create directories
-    Path(CONTENT_DIR).mkdir(parents=True, exist_ok=True)
-    Path(THUMBNAIL_DIR).mkdir(parents=True, exist_ok=True)
-    Path(AUDIO_DIR).mkdir(parents=True, exist_ok=True)
+    # Create a directory for the post
+    post_dir = Path(CONTENT_DIR) / slug
+    post_dir.mkdir(parents=True, exist_ok=True)
+    
+    filename = post_dir / "index.md"
+    
+    # Define asset paths within the post's directory
+    thumb_filename = post_dir / "asset.jpg"
+    audio_filename = post_dir / "asset.mp3"
     
     # Download assets
-    thumb_filename = Path(THUMBNAIL_DIR) / f"{slug}.jpg"
-    audio_filename = Path(AUDIO_DIR) / f"{slug}.mp3"
-    
     if metadata.get("thumbnail"):
         download_thumbnail(metadata["thumbnail"], str(thumb_filename))
     
@@ -449,70 +479,59 @@ def save_markdown(metadata: Dict[str, Any], transcript_text: str, ai_article: Op
 
 """
     
-    # Build markdown
-    md = textwrap.dedent(f"""\
-    +++
-    title = "{sanitize_text(metadata['title'])}"
-    date = "{date_str}"
-    summary = "{summary}"
-    tags = [{tags_str}]
-    author = "{sanitize_text(metadata.get('uploader', 'Unknown'))}"
-    
-    [extra]
-    youtube_url = "{metadata['webpage_url']}"
-    youtube_id = "{metadata['id']}"
-    channel_url = "{metadata.get('channel_url', '')}"
-    duration = {metadata.get('duration', 0)}
-    duration_formatted = "{format_duration(metadata.get('duration', 0))}"
-    thumbnail = "blog/{slug}.jpg"
-    audio = "blog/{slug}.mp3"
-    view_count = {metadata.get('view_count', 0)}
-    like_count = {metadata.get('like_count', 0)}
-    categories = {json.dumps(metadata.get('categories', []))}
-    has_chapters = {len(metadata.get('chapters', [])) > 0}
-    subtitles = {json.dumps(metadata.get('subtitles_available', []))}
-    +++
-    
-    ![{sanitize_text(metadata['title'])}](blog/{slug}.jpg)
-    
-    ## 🎧 Listen to the Episode
-    
-    <audio controls style="width: 100%;">
-      <source src="/blog/{slug}.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-    
-    {stats_md}
-    {chapters_md}
-    {ai_article or '## 🧭 Introduction\n\n_AI-generated narrative unavailable. Please set GROQ_API_KEY environment variable._\n\n## 🔍 Key Points\n\n- Comprehensive video tutorial\n- Detailed technical content\n- Practical examples included'}
-    
-    ## 🗒️ Full Transcript
-    
-    <details>
-    <summary>Click to expand complete transcript</summary>
-    
-    {transcript_text}
-    
-    </details>
-    
-    ## ▶️ Watch the Video
-    
-    <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 2rem 0;">
-      <iframe 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-        src="https://www.youtube.com/embed/{metadata['id']}" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-    
-    [🎥 Watch on YouTube]({metadata['webpage_url']}) | [📺 Visit Channel]({metadata.get('channel_url', metadata['webpage_url'])})
-    
-    ---
-    
-    *This post was automatically generated from the video content. Video by {metadata['uploader']}.*
-    """)
+    # Build markdown with relative paths for assets
+    md = f"""+++
+title = "{sanitize_text(metadata['title'])}"
+date = "{date_str}"
+summary = "{summary}"
+tags = [{tags_str}]
+author = "{sanitize_text(metadata.get('uploader', 'Unknown'))}"
+
+[extra]
+youtube_url = "{metadata['webpage_url']}"
+youtube_id = "{metadata['id']}"
+channel_url = "{metadata.get('channel_url', '')}"
+duration = {metadata.get('duration', 0)}
+duration_formatted = "{format_duration(metadata.get('duration', 0))}"
+thumbnail = "asset.jpg"
+audio = "asset.mp3"
+view_count = {metadata.get('view_count', 0)}
+like_count = {metadata.get('like_count', 0)}
+categories = {json.dumps(metadata.get('categories', []))}
+has_chapters = {str(len(metadata.get('chapters', [])) > 0).lower()}
+subtitles = {json.dumps(metadata.get('subtitles_available', []))}
++++
+
+![{sanitize_text(metadata['title'])}](asset.jpg)
+
+## 🎧 Listen to the Episode
+
+<audio controls style="width: 100%;">
+  <source src="asset.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+{stats_md}
+{chapters_md}
+{ai_article or '## 🧭 Introduction\\n\\n_AI-generated narrative unavailable. Please set GROQ_API_KEY environment variable._\\n\\n## 🔍 Key Points\\n\\n- Comprehensive video tutorial\\n- Detailed technical content\\n- Practical examples included'}
+
+## 🗒️ Full Transcript
+
+<details>
+<summary>Click to expand complete transcript</summary>
+
+{transcript_text}
+
+</details>
+
+## ▶️ Watch the Video
+
+{('<div class="youtube-embed">\n<iframe width="560" height="315" src="https://www.youtube.com/embed/' + metadata['id'] + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>\n</div>\n\n' if metadata.get('embeddable', True) else '')}[🎥 Watch on YouTube]({metadata['webpage_url']}) | [📺 Visit Channel]({metadata.get('channel_url', metadata['webpage_url'])})
+
+---
+
+*This post was automatically generated from the video content. Video by {metadata['uploader']}.*
+"""
     
     with open(filename, "w", encoding="utf-8") as f:
         f.write(md)
@@ -529,6 +548,7 @@ def save_markdown(metadata: Dict[str, Any], transcript_text: str, ai_article: Op
 # MAIN EXECUTION
 # -----------------------------
 def main():
+    load_dotenv()
     parser = argparse.ArgumentParser(
         description="Generate enhanced Markdown blog post from YouTube video.",
         formatter_class=argparse.RawDescriptionHelpFormatter,

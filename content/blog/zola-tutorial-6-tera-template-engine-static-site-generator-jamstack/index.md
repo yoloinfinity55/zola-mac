@@ -1,7 +1,10 @@
 +++
 title = "Zola tutorial #6: Tera template engine | Static site generator | Jamstack"
 date = "2025-11-03"
-tags = ["zola", "tera", "markdown", "rust", "template"]
+tags = [ "zola", "tera", "markdown", "rust", "template",]
+
+[extra]
+youtube_id = "LtVHYocsWjE"
 +++
 ![Zola tutorial #6: Tera template engine | Static site generator | Jamstack](./asset.jpg)
 
