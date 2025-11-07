@@ -1,0 +1,22 @@
+{
+  "tags": [],
+  "keywords": [],
+  "excerpt": "You can now interrupt long-running queries and add new context without restarting or losing progress.\n\nThis is especially useful for refining deep research or GPT-5 Pro queries as the model will adjust its response with your new requirements. \n\nJust hit update in the sidebar and...",
+  "category": "general",
+  "read_time_minutes": 1,
+  "difficulty": "intermediate",
+  "tl_dr": [],
+  "key_takeaways": [],
+  "related_topics": [],
+  "suggested_cta": "Read the full article and subscribe.",
+  "diagnostics": {
+    "style": "informative",
+    "tone": "neutral",
+    "content_type": "article"
+  },
+  "translations": {},
+  "title": "You can now interrupt long-running queries and add new context...",
+  "slug": "you-can-now-interrupt-long-running-queries-and-add-new-context",
+  "lang": "en",
+  "narration_word_count": 79
+}

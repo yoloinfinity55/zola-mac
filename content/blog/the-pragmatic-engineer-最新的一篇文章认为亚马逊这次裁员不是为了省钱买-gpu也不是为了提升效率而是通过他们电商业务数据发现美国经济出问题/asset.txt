@@ -1,0 +1,11 @@
+Hello — a quick read on The Pragmatic Engineer 最新的一篇文章，认为亚马逊这次裁员不是为了省钱买 GPU，也不是为了提升效率，而是通过他们电商业务数据发现美国经济出问题了。.
+
+The Pragmatic Engineer 最新的一篇文章，认为亚马逊这次裁员不是为了省钱买 GPU，也不是为了提升效率，而是通过他们电商业务数据发现美国经济出问题了。
+
+为什么不是为了裁员买 GPU 呢？
+
+裁员能省多少钱？
+
+粗略估算，这1.4万人的总薪酬（工资+福利+股票），一年大概是 20亿到40亿美元。
+
+Thanks for listening. See the article and comments for full details.

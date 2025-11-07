@@ -1,0 +1,9 @@
+Hello — a quick read on You can now interrupt long-running queries and add new context....
+
+You can now interrupt long-running queries and add new context without restarting or losing progress.
+
+This is especially useful for refining deep research or GPT-5 Pro queries as the model will adjust its response with your new requirements.
+
+Just hit update in the sidebar and type in any additional details or clarifications.
+
+Thanks for listening. See the article and comments for full details.

@@ -1,0 +1,7 @@
+kimi-k2-thinking 评测，讲点有趣且不一样的
+
+在本赛季赛博斗蛐蛐中， 我让 K2-thinking 和 GPT-5 High 分别润色同一份历史遗留「设计系统文档」，再交给两位裁判（GPT-5 Pro、Gemini 2.5 Pro）打分。
+
+长话短说，Kimi 小胜
+
+两位裁判意见一致：日常“查”用 Kimi，系统“读”看 High。如果追求快而准，用 kimi 版做主文档。

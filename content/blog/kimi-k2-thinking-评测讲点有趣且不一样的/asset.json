@@ -1,0 +1,21 @@
+{
+  "tags": [],
+  "keywords": [],
+  "excerpt": "kimi-k2-thinking 评测，讲点有趣且不一样的\n\n在本赛季赛博斗蛐蛐中， 我让 K2-thinking 和 GPT-5 High 分别润色同一份历史遗留「设计系统文档」，再交给两位裁判（GPT-5 Pro、Gemini 2.5 Pro）打分。\n\n长话短说，Kimi 小胜\n\n两位裁判意见一致：日常“查”用 Kimi，系统“读”看 High。如果追求快而准，用 kimi 版做主文档。\n\n对话记录放在评论区, 可自行查看\n\nGPT-5 Pro 甚至构建了一套专业评审框架(图1)：10 个指标、百分制加权评分。在最关键的\"可执行性\"指标上（权重 15...",
+  "category": "general",
+  "read_time_minutes": 1,
+  "difficulty": "intermediate",
+  "tl_dr": [],
+  "key_takeaways": [],
+  "related_topics": [],
+  "suggested_cta": "Read the full article and subscribe for more updates.",
+  "diagnostics": {
+    "style": "informative",
+    "tone": "neutral",
+    "content_type": "article"
+  },
+  "translations": {},
+  "title": "kimi-k2-thinking 评测，讲点有趣且不一样的",
+  "slug": "kimi-k2-thinking-评测讲点有趣且不一样的",
+  "lang": "zh-cn"
+}
