@@ -650,36 +650,40 @@ def main():
     if args.verbose:
         logger.setLevel(logging.DEBUG)
     
-    logger.info("=" * 70)
-    logger.info("🚀 Starting Enhanced Blog Post Generation (v3.0)")
-    logger.info("=" * 70)
-    
-    # Fetch comprehensive metadata
-    meta = fetch_youtube_info(args.youtube)
-    if not meta:
-        logger.error("❌ Failed to fetch video metadata. Exiting.")
+    try:
+        logger.info("=" * 70)
+        logger.info("🚀 Starting Enhanced Blog Post Generation (v3.0)")
+        logger.info("=" * 70)
+        
+        # Fetch comprehensive metadata
+        meta = fetch_youtube_info(args.youtube)
+        if not meta:
+            logger.error("❌ Failed to fetch video metadata. Exiting.")
+            sys.exit(1)
+        
+        logger.info(f"📹 Video: {meta['title']}")
+        logger.info(f"👤 Author: {meta['uploader']}")
+        logger.info(f"⏱️  Duration: {format_duration(meta.get('duration', 0))}")
+        logger.info(f"👁️  Views: {meta.get('view_count', 0):,}")
+        logger.info(f"📑 Chapters: {len(meta.get('chapters', []))}")
+        
+        # Fetch transcript
+        transcript = fetch_transcript(meta["id"])
+        
+        # Generate enhanced AI narrative
+        ai_article = generate_ai_narrative(meta, transcript)
+        
+        # Save markdown
+        filename = save_markdown(meta, transcript, ai_article)
+        
+        logger.info("=" * 70)
+        logger.info(f"✅ Blog post generation complete!")
+        logger.info(f"📄 File: {filename}")
+        logger.info(f"🏷️  Auto-generated {len(categorize_video(meta.get('categories', []), meta.get('tags', []), meta['title'], meta['description']))} relevant tags")
+        logger.info("=" * 70)
+    except Exception as e:
+        logger.exception(f"An unexpected error occurred during post generation: {e}")
         sys.exit(1)
-    
-    logger.info(f"📹 Video: {meta['title']}")
-    logger.info(f"👤 Author: {meta['uploader']}")
-    logger.info(f"⏱️  Duration: {format_duration(meta.get('duration', 0))}")
-    logger.info(f"👁️  Views: {meta.get('view_count', 0):,}")
-    logger.info(f"📑 Chapters: {len(meta.get('chapters', []))}")
-    
-    # Fetch transcript
-    transcript = fetch_transcript(meta["id"])
-    
-    # Generate enhanced AI narrative
-    ai_article = generate_ai_narrative(meta, transcript)
-    
-    # Save markdown
-    filename = save_markdown(meta, transcript, ai_article)
-    
-    logger.info("=" * 70)
-    logger.info(f"✅ Blog post generation complete!")
-    logger.info(f"📄 File: {filename}")
-    logger.info(f"🏷️  Auto-generated {len(categorize_video(meta.get('categories', []), meta.get('tags', []), meta['title'], meta['description']))} relevant tags")
-    logger.info("=" * 70)
 
 
 if __name__ == "__main__":

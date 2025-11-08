@@ -1,0 +1,714 @@
++++
+title = "Last month marked worst October for layoffs in more than 20 years: Challenger"
+date = "2024-11-01"
++++
+
+### News
+
+### Life
+
+### Entertainment
+
+### Finance
+
+### Sports
+
+### New on Yahoo
+
+# Yahoo Finance
+
+# Last month marked worst October for layoffs in more than 20 years: Challenger
+
+## Recommended Stories
+
+Oops, something went wrong
+News
+Today's news
+US
+Politics
+World
+Weather
+Climate change
+HealthWellnessMental healthSexual healthDermatologyOral healthHair lossFoot healthNutritionHealthy eatingMeal deliveryWeight lossVitamins and supplementsFitnessEquipmentExerciseWomen’s healthSleepHealthy agingHearingMobility
+WellnessMental healthSexual healthDermatologyOral healthHair lossFoot health
+Mental health
+Sexual health
+Dermatology
+Oral health
+Hair loss
+Foot health
+NutritionHealthy eatingMeal deliveryWeight lossVitamins and supplements
+Healthy eating
+Meal delivery
+Weight loss
+Vitamins and supplements
+FitnessEquipmentExercise
+Equipment
+Exercise
+Women’s health
+Sleep
+Healthy agingHearingMobility
+Hearing
+Mobility
+Science
+OriginalsThe 360
+The 360
+Newsletters
+Games
+Life
+HealthWellnessNutritionFitnessHealthy agingMental healthSleepYour bodyDermatologyChildren's healthFoot healthHair lossHearingOral healthSexual healthWomen’s healthConditionsCardiovascular healthDigestive healthEndocrine system
+WellnessNutritionFitnessHealthy agingMental healthSleep
+Nutrition
+Fitness
+Healthy aging
+Mental health
+Sleep
+Your bodyDermatologyChildren's healthFoot healthHair lossHearingOral healthSexual healthWomen’s health
+Dermatology
+Children's health
+Foot health
+Hair loss
+Hearing
+Oral health
+Sexual health
+Women’s health
+ConditionsCardiovascular healthDigestive healthEndocrine system
+Cardiovascular health
+Digestive health
+Endocrine system
+ParentingFamily healthSo mini ways
+Family health
+So mini ways
+Style and beautyIt FiguresUnapologetically
+It Figures
+Unapologetically
+Horoscopes
+ShoppingStyleAccessoriesClothingLuggageShoesBeautyHairMakeupSkincareSunscreenHealthDentalFitnessHair lossHearing aidsMental healthMobilityNutritionPersonal careSleepWomen's healthHome and gardenBeddingCleaningGardeningKitchenOutdoorPetsTechAccessoriesAudioAutoComputersPhonesSmart homeTVsGift ideasStoresAmazonBest BuyHome DepotMacy'sNordstromTargetWalmartWayfairShopping GuidesBest non-toxic cutting boardsBest heated socksBest body washBest cordless stick vacuumsBest makeup removersDeals
+StyleAccessoriesClothingLuggageShoes
+Accessories
+Clothing
+Luggage
+Shoes
+BeautyHairMakeupSkincareSunscreen
+Hair
+Makeup
+Skincare
+Sunscreen
+HealthDentalFitnessHair lossHearing aidsMental healthMobilityNutritionPersonal careSleepWomen's health
+Dental
+Fitness
+Hair loss
+Hearing aids
+Mental health
+Mobility
+Nutrition
+Personal care
+Sleep
+Women's health
+Home and gardenBeddingCleaningGardeningKitchenOutdoor
+Bedding
+Cleaning
+Gardening
+Kitchen
+Outdoor
+Pets
+TechAccessoriesAudioAutoComputersPhonesSmart homeTVs
+Accessories
+Audio
+Auto
+Computers
+Phones
+Smart home
+TVs
+Gift ideas
+StoresAmazonBest BuyHome DepotMacy'sNordstromTargetWalmartWayfair
+Amazon
+Best Buy
+Home Depot
+Macy's
+Nordstrom
+Target
+Walmart
+Wayfair
+Shopping GuidesBest non-toxic cutting boardsBest heated socksBest body washBest cordless stick vacuumsBest makeup removers
+Best non-toxic cutting boards
+Best heated socks
+Best body wash
+Best cordless stick vacuums
+Best makeup removers
+Deals
+Food
+Travel
+AutosEV & Future TechClassic & CollectorDeals & Buying GuidesOwnershipSafety & RecallsPolicy & EnvironmentNew Vehicles & ReviewsAuto ShowsGeneralPeople & Culture
+EV & Future Tech
+Classic & Collector
+Deals & Buying Guides
+Ownership
+Safety & Recalls
+Policy & Environment
+New Vehicles & Reviews
+Auto Shows
+General
+People & Culture
+Gift ideas
+Buying guides
+Best Prime Day deals
+Prime Day tech deals
+October Prime Day deals
+Entertainment
+Celebrity
+TV
+Movies
+Music
+How to Watch
+Interviews
+Videos
+Finance
+My Portfolio
+NewsLatestOriginalsPremium newsNewslettersStock marketCryptoTariffsEarningsEconomiesTechHousing
+Latest
+Originals
+Premium news
+Newsletters
+Stock market
+Crypto
+Tariffs
+Earnings
+Economies
+Tech
+Housing
+MarketsStocksMost activeDay gainersDay losersTrendingHighest dividendSmall capLarge capMost expensiveHighest betaPink sheetUnusual volumeCryptoMost activeDay gainersDay losersOptionsDay gainersDay losersHighest open interestHighest implied volatilityPrivate companies52 week gainersRecently fundedMost fundedSectorsTechnologyFinancial servicesConsumer cyclicalCommunication servicesHealthcareIndustrialsConsumer defensiveEnergyBasic materialsReal estateUtilitiesTreasury bondsFuturesCurrenciesWorld indicesETFsMutual funds
+StocksMost activeDay gainersDay losersTrendingHighest dividendSmall capLarge capMost expensiveHighest betaPink sheetUnusual volume
+Most active
+Day gainers
+Day losers
+Trending
+Highest dividend
+Small cap
+Large cap
+Most expensive
+Highest beta
+Pink sheet
+Unusual volume
+CryptoMost activeDay gainersDay losers
+Most active
+Day gainers
+Day losers
+OptionsDay gainersDay losersHighest open interestHighest implied volatility
+Day gainers
+Day losers
+Highest open interest
+Highest implied volatility
+Private companies52 week gainersRecently fundedMost funded
+52 week gainers
+Recently funded
+Most funded
+SectorsTechnologyFinancial servicesConsumer cyclicalCommunication servicesHealthcareIndustrialsConsumer defensiveEnergyBasic materialsReal estateUtilities
+Technology
+Financial services
+Consumer cyclical
+Communication services
+Healthcare
+Industrials
+Consumer defensive
+Energy
+Basic materials
+Real estate
+Utilities
+Treasury bonds
+Futures
+Currencies
+World indices
+ETFs
+Mutual funds
+ResearchStock picksScreenersStocksMost shortedMost active penny stocksAnalyst strong buyCalendarEarningsStock splitsIPOsEconomic eventsStock comparisonNVDA vs INTCNVDA vs AMDGOOG vs AMZNAAPL vs MSFTTSLA vs RIVNCurrency converterAdvanced chartsInvestment ideasResearch reports
+Stock picks
+ScreenersStocksMost shortedMost active penny stocksAnalyst strong buy
+Stocks
+Most shorted
+Most active penny stocks
+Analyst strong buy
+CalendarEarningsStock splitsIPOsEconomic events
+Earnings
+Stock splits
+IPOs
+Economic events
+Stock comparisonNVDA vs INTCNVDA vs AMDGOOG vs AMZNAAPL vs MSFTTSLA vs RIVN
+NVDA vs INTC
+NVDA vs AMD
+GOOG vs AMZN
+AAPL vs MSFT
+TSLA vs RIVN
+Currency converter
+Advanced charts
+Investment ideas
+Research reports
+Personal FinanceMy MoneyCredit cardsBest credit cardsBest 0% APR cardsBest balance transfer cardsBest rewards cardsBest travel cardsBankingBest CD ratesBest high-yield savings accountsBest money market accountsBest free checking accountsBest online banksMortgageBest mortgage lendersLowest mortgage ratesMortgage refinanceFirst time homebuyerMortgage payment calculatorHome affordability calculatorInsuranceFind car insuranceTypes of car insuranceFind life insuranceTaxesTax refund statusHow to fileTax extensionChild tax creditStudent loansFederal vs. privateHow to applyFAFSA 2026-27Student loan assistancePersonal loansBest personal loansImprove credit scoreHow to get approved
+My Money
+Credit cardsBest credit cardsBest 0% APR cardsBest balance transfer cardsBest rewards cardsBest travel cards
+Best credit cards
+Best 0% APR cards
+Best balance transfer cards
+Best rewards cards
+Best travel cards
+BankingBest CD ratesBest high-yield savings accountsBest money market accountsBest free checking accountsBest online banks
+Best CD rates
+Best high-yield savings accounts
+Best money market accounts
+Best free checking accounts
+Best online banks
+MortgageBest mortgage lendersLowest mortgage ratesMortgage refinanceFirst time homebuyerMortgage payment calculatorHome affordability calculator
+Best mortgage lenders
+Lowest mortgage rates
+Mortgage refinance
+First time homebuyer
+Mortgage payment calculator
+Home affordability calculator
+InsuranceFind car insuranceTypes of car insuranceFind life insurance
+Find car insurance
+Types of car insurance
+Find life insurance
+TaxesTax refund statusHow to fileTax extensionChild tax credit
+Tax refund status
+How to file
+Tax extension
+Child tax credit
+Student loansFederal vs. privateHow to applyFAFSA 2026-27Student loan assistance
+Federal vs. private
+How to apply
+FAFSA 2026-27
+Student loan assistance
+Personal loansBest personal loansImprove credit scoreHow to get approved
+Best personal loans
+Improve credit score
+How to get approved
+VideosLatestEditor's picksTrending stocksInvesting insightsLive showsMorning Brief: Market SunriseMorning BriefOpening BidMarket CatalystsMarket DominationMarket Domination OvertimeAsking for a TrendMind Your MoneyVideo podcastsStocks in TranslationTrader TalkWarrior MoneyLiving Not So FabulouslyThe Big IdeaFinancial FreestyleDecoding RetirementFA CornerETF ReportOptions Pit
+Latest
+Editor's picks
+Trending stocks
+Investing insights
+Live showsMorning Brief: Market SunriseMorning BriefOpening BidMarket CatalystsMarket DominationMarket Domination OvertimeAsking for a TrendMind Your Money
+Morning Brief: Market Sunrise
+Morning Brief
+Opening Bid
+Market Catalysts
+Market Domination
+Market Domination Overtime
+Asking for a Trend
+Mind Your Money
+Video podcastsStocks in TranslationTrader TalkWarrior MoneyLiving Not So FabulouslyThe Big IdeaFinancial FreestyleDecoding Retirement
+Stocks in Translation
+Trader Talk
+Warrior Money
+Living Not So Fabulously
+The Big Idea
+Financial Freestyle
+Decoding Retirement
+FA Corner
+ETF Report
+Options Pit
+Watch Now
+Sports
+FantasyNewsFantasy footballBest ballPro Pick 'EmCollege Pick 'EmFantasy baseballFantasy hockeyFantasy basketballDownload the app
+News
+Fantasy football
+Best ball
+Pro Pick 'Em
+College Pick 'Em
+Fantasy baseball
+Fantasy hockey
+Fantasy basketball
+Download the app
+Daily fantasy
+NFLNewsScores and schedulesStandingsStatsTeamsPlayersDraftsInjuriesOddsSuper BowlGameChannelVideos
+News
+Scores and schedules
+Standings
+Stats
+Teams
+Players
+Drafts
+Injuries
+Odds
+Super Bowl
+GameChannel
+Videos
+NBANewsDraftScores and schedulesStandingsStatsTeamsPlayersInjuriesVideosOddsPlayoffs
+News
+Draft
+Scores and schedules
+Standings
+Stats
+Teams
+Players
+Injuries
+Videos
+Odds
+Playoffs
+MLBNewsScores and schedulesStandingsStatsTeamsPlayersOddsVideosWorld Baseball Classic
+News
+Scores and schedules
+Standings
+Stats
+Teams
+Players
+Odds
+Videos
+World Baseball Classic
+NHLNewsScores and schedulesStandingsStatsTeamsPlayersOddsPlayoffs
+News
+Scores and schedules
+Standings
+Stats
+Teams
+Players
+Odds
+Playoffs
+College footballNewsScores and schedulesStandingsRankingsStatsTeams
+News
+Scores and schedules
+Standings
+Rankings
+Stats
+Teams
+College basketball
+SoccerNewsScores and schedulesPremier LeagueMLSNWSLLiga MXCONCACAF LeagueChampions LeagueLa LigaSerie ABundesligaLigue 1World Cup
+News
+Scores and schedules
+Premier League
+MLS
+NWSL
+Liga MX
+CONCACAF League
+Champions League
+La Liga
+Serie A
+Bundesliga
+Ligue 1
+World Cup
+NFL Draft
+Yahoo Sports AM
+Show allWNBASportsbookNCAAFTennisGolfNASCARNCAABNCAAWBoxingUSFLCyclingMotorsportsOlympicsHorse racingGameChannelRivalsNewslettersPodcastsVideosRSSJobsHelpWorld CupMore news
+WNBA
+Sportsbook
+NCAAF
+Tennis
+Golf
+NASCAR
+NCAAB
+NCAAW
+Boxing
+USFL
+Cycling
+Motorsports
+Olympics
+Horse racing
+GameChannel
+Rivals
+Newsletters
+Podcasts
+Videos
+RSS
+Jobs
+Help
+World Cup
+More news
+New on Yahoo
+Creators
+TechAudioComputingGamingConnectionsGaming dealsNintendoPCPlayStationWordleXboxHome entertainmentTVsPhonesScienceStreamingStreaming reviewsTech NewsVPNDealsMoreAIAppsAR and VRBusinessCamerasCyber securityEntertainmentGeneralReviews and guidesSmart homeSocial mediaTransportationWearables
+Audio
+Computing
+GamingConnectionsGaming dealsNintendoPCPlayStationWordleXbox
+Connections
+Gaming deals
+Nintendo
+PC
+PlayStation
+Wordle
+Xbox
+Home entertainmentTVs
+TVs
+Phones
+Science
+StreamingStreaming reviews
+Streaming reviews
+Tech News
+VPN
+Deals
+MoreAIAppsAR and VRBusinessCamerasCyber securityEntertainmentGeneralReviews and guidesSmart homeSocial mediaTransportationWearables
+AI
+Apps
+AR and VR
+Business
+Cameras
+Cyber security
+Entertainment
+General
+Reviews and guides
+Smart home
+Social media
+Transportation
+Wearables
+Local servicesMovingRoofingPaintingPlumbing
+Moving
+Roofing
+Painting
+Plumbing
+Terms
+Privacy
+Privacy Dashboard
+Feedback
+Yahoo Finance
+USEnglish
+US y LATAMEspañol
+AustraliaEnglish
+CanadaEnglish
+CanadaFrançais
+DeutschlandDeutsch
+FranceFrançais
+香港繁中
+MalaysiaEnglish
+New ZealandEnglish
+SingaporeEnglish
+台灣繁中
+UKEnglish
+News
+Finance
+Sports
+MoreNewsToday's newsUSPoliticsWorldWeatherClimate changeHealthScienceOriginalsNewslettersGamesLifeHealthParentingStyle and beautyHoroscopesShoppingFoodTravelAutosGift ideasBuying guidesBest Prime Day dealsPrime Day tech dealsOctober Prime Day dealsEntertainmentCelebrityTVMoviesMusicHow to WatchInterviewsVideosFinanceMy portfolioWatchlistsMarketsNewsVideosScreenersPersonal financeCryptoSectorsSportsFantasyNFLNBAMLBNHLCollege footballCollege basketballSoccerNFL DraftYahoo Sports AMNew on YahooCreatorsTechLocal servicesSelected editionUSEnglish
+NewsToday's newsUSPoliticsWorldWeatherClimate changeHealthScienceOriginalsNewslettersGames
+Today's news
+US
+Politics
+World
+Weather
+Climate change
+Health
+Science
+Originals
+Newsletters
+Games
+LifeHealthParentingStyle and beautyHoroscopesShoppingFoodTravelAutosGift ideasBuying guidesBest Prime Day dealsPrime Day tech dealsOctober Prime Day deals
+Health
+Parenting
+Style and beauty
+Horoscopes
+Shopping
+Food
+Travel
+Autos
+Gift ideas
+Buying guides
+Best Prime Day deals
+Prime Day tech deals
+October Prime Day deals
+EntertainmentCelebrityTVMoviesMusicHow to WatchInterviewsVideos
+Celebrity
+TV
+Movies
+Music
+How to Watch
+Interviews
+Videos
+FinanceMy portfolioWatchlistsMarketsNewsVideosScreenersPersonal financeCryptoSectors
+My portfolio
+Watchlists
+Markets
+News
+Videos
+Screeners
+Personal finance
+Crypto
+Sectors
+SportsFantasyNFLNBAMLBNHLCollege footballCollege basketballSoccerNFL DraftYahoo Sports AM
+Fantasy
+NFL
+NBA
+MLB
+NHL
+College football
+College basketball
+Soccer
+NFL Draft
+Yahoo Sports AM
+New on YahooCreatorsTechLocal servicesSelected editionUSEnglish
+New on YahooCreatorsTechLocal services
+Creators
+Tech
+Local services
+Selected editionUSEnglish
+My Portfolio
+NewsLatestOriginalsPremium newsNewslettersStock marketCryptoTariffsEarningsEconomiesTechHousing
+Latest
+Originals
+Premium news
+Newsletters
+Stock market
+Crypto
+Tariffs
+Earnings
+Economies
+Tech
+Housing
+MarketsStocksMost activeDay gainersDay losersTrendingHighest dividendSmall capLarge capMost expensiveHighest betaPink sheetUnusual volumeCryptoMost activeDay gainersDay losersOptionsDay gainersDay losersHighest open interestHighest implied volatilityPrivate companies52 week gainersRecently fundedMost fundedSectorsTechnologyFinancial servicesConsumer cyclicalCommunication servicesHealthcareIndustrialsConsumer defensiveEnergyBasic materialsReal estateUtilitiesTreasury bondsFuturesCurrenciesWorld indicesETFsMutual funds
+StocksMost activeDay gainersDay losersTrendingHighest dividendSmall capLarge capMost expensiveHighest betaPink sheetUnusual volume
+Most active
+Day gainers
+Day losers
+Trending
+Highest dividend
+Small cap
+Large cap
+Most expensive
+Highest beta
+Pink sheet
+Unusual volume
+CryptoMost activeDay gainersDay losers
+Most active
+Day gainers
+Day losers
+OptionsDay gainersDay losersHighest open interestHighest implied volatility
+Day gainers
+Day losers
+Highest open interest
+Highest implied volatility
+Private companies52 week gainersRecently fundedMost funded
+52 week gainers
+Recently funded
+Most funded
+SectorsTechnologyFinancial servicesConsumer cyclicalCommunication servicesHealthcareIndustrialsConsumer defensiveEnergyBasic materialsReal estateUtilities
+Technology
+Financial services
+Consumer cyclical
+Communication services
+Healthcare
+Industrials
+Consumer defensive
+Energy
+Basic materials
+Real estate
+Utilities
+Treasury bonds
+Futures
+Currencies
+World indices
+ETFs
+Mutual funds
+ResearchStock picksScreenersStocksMost shortedMost active penny stocksAnalyst strong buyCalendarEarningsStock splitsIPOsEconomic eventsStock comparisonNVDA vs INTCNVDA vs AMDGOOG vs AMZNAAPL vs MSFTTSLA vs RIVNCurrency converterAdvanced chartsInvestment ideasResearch reports
+Stock picks
+ScreenersStocksMost shortedMost active penny stocksAnalyst strong buy
+Stocks
+Most shorted
+Most active penny stocks
+Analyst strong buy
+CalendarEarningsStock splitsIPOsEconomic events
+Earnings
+Stock splits
+IPOs
+Economic events
+Stock comparisonNVDA vs INTCNVDA vs AMDGOOG vs AMZNAAPL vs MSFTTSLA vs RIVN
+NVDA vs INTC
+NVDA vs AMD
+GOOG vs AMZN
+AAPL vs MSFT
+TSLA vs RIVN
+Currency converter
+Advanced charts
+Investment ideas
+Research reports
+Personal FinanceMy MoneyBETACredit cardsBest credit cardsBest 0% APR cardsBest balance transfer cardsBest rewards cardsBest travel cardsBankingBest CD ratesBest high-yield savings accountsBest money market accountsBest free checking accountsBest online banksMortgageBest mortgage lendersLowest mortgage ratesMortgage refinanceFirst time homebuyerMortgage payment calculatorHome affordability calculatorInsuranceFind car insuranceTypes of car insuranceFind life insuranceTaxesTax refund statusHow to fileTax extensionChild tax creditStudent loansFederal vs. privateHow to applyFAFSA 2026-27Student loan assistancePersonal loansBest personal loansImprove credit scoreHow to get approved
+My MoneyBETA
+Credit cardsBest credit cardsBest 0% APR cardsBest balance transfer cardsBest rewards cardsBest travel cards
+Best credit cards
+Best 0% APR cards
+Best balance transfer cards
+Best rewards cards
+Best travel cards
+BankingBest CD ratesBest high-yield savings accountsBest money market accountsBest free checking accountsBest online banks
+Best CD rates
+Best high-yield savings accounts
+Best money market accounts
+Best free checking accounts
+Best online banks
+MortgageBest mortgage lendersLowest mortgage ratesMortgage refinanceFirst time homebuyerMortgage payment calculatorHome affordability calculator
+Best mortgage lenders
+Lowest mortgage rates
+Mortgage refinance
+First time homebuyer
+Mortgage payment calculator
+Home affordability calculator
+InsuranceFind car insuranceTypes of car insuranceFind life insurance
+Find car insurance
+Types of car insurance
+Find life insurance
+TaxesTax refund statusHow to fileTax extensionChild tax credit
+Tax refund status
+How to file
+Tax extension
+Child tax credit
+Student loansFederal vs. privateHow to applyFAFSA 2026-27Student loan assistance
+Federal vs. private
+How to apply
+FAFSA 2026-27
+Student loan assistance
+Personal loansBest personal loansImprove credit scoreHow to get approved
+Best personal loans
+Improve credit score
+How to get approved
+VideosLatestEditor's picksTrending stocksInvesting insightsLive showsMorning Brief: Market SunriseMorning BriefOpening BidMarket CatalystsMarket DominationMarket Domination OvertimeAsking for a TrendMind Your MoneyVideo podcastsStocks in TranslationTrader TalkWarrior MoneyLiving Not So FabulouslyThe Big IdeaFinancial FreestyleDecoding RetirementFA CornerETF ReportOptions Pit
+Latest
+Editor's picks
+Trending stocks
+Investing insights
+Live showsMorning Brief: Market SunriseMorning BriefOpening BidMarket CatalystsMarket DominationMarket Domination OvertimeAsking for a TrendMind Your Money
+Morning Brief: Market Sunrise
+Morning Brief
+Opening Bid
+Market Catalysts
+Market Domination
+Market Domination Overtime
+Asking for a Trend
+Mind Your Money
+Video podcastsStocks in TranslationTrader TalkWarrior MoneyLiving Not So FabulouslyThe Big IdeaFinancial FreestyleDecoding Retirement
+Stocks in Translation
+Trader Talk
+Warrior Money
+Living Not So Fabulously
+The Big Idea
+Financial Freestyle
+Decoding Retirement
+FA Corner
+ETF Report
+Options Pit
+Watch Now
+Last month marked worst October for layoffs in more than 20 years: Challenger
+Last month was the worst October for layoff announcements since 2003 as companies slashed roles to save money, pared back pandemic-era hires, and planned ahead for artificial intelligence, according to theglobal outplacement firm Challenger, Gray & Christmas.
+Employers announced 153,074 cuts last month, compared to 55,597 cuts in October 2024. Last month’s figure was “the highest total for October in over 20 years, and the highest total for a single month in the fourth quarter since 2008,” Andy Challenger, chief revenue officer for Challenger, Gray & Christmas, said in a report Thursday.
+Altogether, US firms announced the end of 1,099,500 positions through the first 10 months of this year, up 44% from the 761,358 cuts seen for the entirety of 2024. Technology businesses led private-sector layoffs.
+“October’s pace of job cutting was much higher than average for the month,” Challenger said in a statement.
+“Some industries are correcting after the hiring boom of the pandemic, but this comes as AI adoption, softening consumer and corporate spending, and rising costs drive belt-tightening and hiring freezes,” he continued. “Those laid off now are finding it harder to quickly secure new roles, which could further loosen the labor market.”
+Recentnotable layoff announcementshave come from Amazon (AMZN), Target (TGT), and UPS (UPS). Year-to-date cuts are at their highest since 2020, Challenger said, when the pandemic wreaked havoc on the labor market.
+The Challenger report comes amid a data drought from the Labor Department due to the government shutdown — now the longest in US history. The last official jobs report reflects labor conditions from August, while data from September has yet to be published. October’s jobs report, due out tomorrow, is unlikely to be published.
+Read more:How the government shutdown affects your student loans, Social Security, and more
+Through August, the story was that the labor market was essentially in stasis: an environment of low hiring and low firing, withunemployment nudging up to 4.3%as the unemployed struggled to find available positions and the employed clung to their roles.
+It’s unlikely the situation has changed dramatically since then — data from the payroll processor ADP published Wednesday actuallyshowed modest job growthamong private employers for October, with hiring gains mixed by sector.
+Still, Challenger found that for the year through October, employers had announced 488,077 planned hires compared to the 750,333 announced at the same point in 2024 — marking the lowest year-to-date total since 2011. Announced seasonal hiring plans through October were also at their lowest in Challenger’s data dating back to 2012.
+Emma Ockermanis a reporter covering the economy and labor for Yahoo Finance. You can reach her atemma.ockerman@yahooinc.com.
+Sign up for the Mind Your Money newsletter
+Click here for the latest economic news and indicators to help inform your investing decisions
+Read the latest financial and business news from Yahoo Finance
+Recommended Stories
+Market status isn't available nowError in retrieving data
+Error in retrieving data
+PortfolioPortfolioSign in to access your portfolioSign in
+Sign in to access your portfolio
+Top gainersError in retrieving data
+Error in retrieving data
+Top losersError in retrieving data
+Error in retrieving data
+Most activeError in retrieving data
+Error in retrieving data
+Earnings eventsMy earnings eventsEarnings events
+Trending tickersError in retrieving data
+Error in retrieving data
+Top economic events

@@ -9,7 +9,15 @@ adhering to the new content structure where each post has its own folder.
 import os
 import toml
 from pathlib import Path
-from generate_posts_v2 import download_thumbnail, logger
+from generate_posts_v2 import download_thumbnail
+import logging
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 CONTENT_DIR = "content/blog"
 

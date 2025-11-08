@@ -8,6 +8,14 @@ from readability import Document
 from langdetect import detect, DetectorFactory
 import edge_tts
 from pathlib import Path
+import logging
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 # Ensure consistent language detection
 DetectorFactory.seed = 0
@@ -30,6 +38,7 @@ def get_language(text):
         lang = detect(text)
         return lang
     except Exception:
+        logger.warning("Language detection failed, defaulting to English.")
         return "en"
 
 def chunk_text(text, max_len=MAX_CHUNK):
@@ -50,7 +59,7 @@ def chunk_text(text, max_len=MAX_CHUNK):
 async def generate_chunk(text, filename, voice="en-US-JennyNeural"):
     communicate = edge_tts.Communicate(text, voice)
     await communicate.save(filename)
-    print(f"Chunk saved: {filename}")
+    logger.info(f"Chunk saved: {filename}")
 
 def combine_mp3(temp_files, output_file):
     """
@@ -64,13 +73,13 @@ def combine_mp3(temp_files, output_file):
         "ffmpeg", "-f", "concat", "-safe", "0",
         "-i", str(concat_list), "-c", "copy", str(output_file), "-y"
     ]
-    print("Merging audio files with ffmpeg...")
+    logger.info("Merging audio files with ffmpeg...")
     import subprocess
     subprocess.run(subprocess_cmd, check=True)
 
 async def process_url_to_mp3(url):
     # Fetch webpage with User-Agent
-    print(f"Fetching content from: {url}")
+    logger.info(f"Fetching content from: {url}")
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     response = requests.get(url, headers=headers, timeout=10)
     response.raise_for_status()
@@ -92,7 +101,7 @@ async def process_url_to_mp3(url):
 
     # Save text content first
     TEXT_FILE.write_text(text, encoding="utf-8")
-    print(f"Text content saved: {TEXT_FILE}")
+    logger.info(f"Text content saved: {TEXT_FILE}")
 
     # Detect language and set voice
     lang = get_language(text)
@@ -103,7 +112,7 @@ async def process_url_to_mp3(url):
 
     # Chunking
     chunks = chunk_text(text)
-    print(f"Converting {len(chunks)} chunks to speech...")
+    logger.info(f"Converting {len(chunks)} chunks to speech...")
 
     temp_files = []
     for i, chunk in enumerate(chunks):
@@ -113,7 +122,7 @@ async def process_url_to_mp3(url):
 
     # Merge
     combine_mp3(temp_files, MP3_FILE)
-    print(f"Audio saved: {MP3_FILE}")
+    logger.info(f"Audio saved: {MP3_FILE}")
 
 def main():
     if len(sys.argv) > 1:
@@ -124,7 +133,7 @@ def main():
     try:
         asyncio.run(process_url_to_mp3(url))
     except Exception as e:
-        print(f"Error: {e}")
+        logger.error(f"Error: {e}")
 
 if __name__ == "__main__":
     main()

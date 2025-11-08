@@ -20,7 +20,6 @@ has_chapters = false
 subtitles = true
 +++
 
-![How to make your personal website and blog feat. zola](asset.jpg)
 
 ## 🎧 Listen to the Episode
 

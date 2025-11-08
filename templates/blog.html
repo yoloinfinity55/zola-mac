@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block body_class %}blog{% endblock %}
+
 {% block content %}
 <div class="blog-header">
   <h1>{{ section.title }}</h1>
@@ -8,22 +10,29 @@
 
 <div class="blog-posts">
   {% if paginator %}
-    {% for page in paginator.pages %}
-      <article class="blog-post-card">
-        <div class="post-card-header">
-          <h2 class="post-card-title">
-            <a href="{{ page.permalink }}">{{ page.title }}</a>
-          </h2>
-          <p class="post-meta">{{ page.date | date(format="%B %e, %Y") }}</p>
-        </div>
-        {% if page.summary %}
-          <p class="post-card-summary">{{ page.summary | safe }}</p>
-        {% endif %}
-        <a href="{{ page.permalink }}" class="read-more">
-          Read more <span>→</span>
-        </a>
-      </article>
-    {% endfor %}
+    <div class="blog-posts-grid">
+      {% for page in paginator.pages %}
+        <article class="blog-post-card">
+          {% if page.path is starting_with("/blog/") %}
+            <div class="blog-post-image">
+              <img src="{{ page.path }}/asset.jpg" alt="{{ page.title }}" loading="lazy">
+            </div>
+          {% endif %}
+          <div class="post-card-header">
+            <h2 class="post-card-title">
+              <a href="{{ page.permalink }}">{{ page.title }}</a>
+            </h2>
+            <p class="post-meta">{{ page.date | date(format="%B %e, %Y") }}</p>
+          </div>
+          {% if page.summary %}
+            <p class="post-card-summary">{{ page.summary | safe }}</p>
+          {% endif %}
+          <a href="{{ page.permalink }}" class="read-more">
+            Read more <span>→</span>
+          </a>
+        </article>
+      {% endfor %}
+    </div>
 
     <nav class="pagination-nav">
       {% if paginator.previous %}
@@ -40,22 +49,29 @@
       {% endif %}
     </nav>
   {% else %}
-    {% for page in section.pages %}
-      <article class="blog-post-card">
-        <div class="post-card-header">
-          <h2 class="post-card-title">
-            <a href="{{ page.permalink }}">{{ page.title }}</a>
-          </h2>
-          <p class="post-meta">{{ page.date | date(format="%B %e, %Y") }}</p>
-        </div>
-        {% if page.summary %}
-          <p class="post-card-summary">{{ page.summary | safe }}</p>
-        {% endif %}
-        <a href="{{ page.permalink }}" class="read-more">
-          Read more <span>→</span>
-        </a>
-      </article>
-    {% endfor %}
+    <div class="blog-posts-grid">
+      {% for page in section.pages %}
+        <article class="blog-post-card">
+          {% if page.path is starting_with("/blog/") %}
+            <div class="blog-post-image">
+              <img src="{{ page.path }}/asset.jpg" alt="{{ page.title }}" loading="lazy">
+            </div>
+          {% endif %}
+          <div class="post-card-header">
+            <h2 class="post-card-title">
+              <a href="{{ page.permalink }}">{{ page.title }}</a>
+            </h2>
+            <p class="post-meta">{{ page.date | date(format="%B %e, %Y") }}</p>
+          </div>
+          {% if page.summary %}
+            <p class="post-card-summary">{{ page.summary | safe }}</p>
+          {% endif %}
+          <a href="{{ page.permalink }}" class="read-more">
+            Read more <span>→</span>
+          </a>
+        </article>
+      {% endfor %}
+    </div>
   {% endif %}
 </div>
 {% endblock content %}

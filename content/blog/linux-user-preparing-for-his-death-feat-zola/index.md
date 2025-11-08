@@ -20,7 +20,6 @@ has_chapters = false
 subtitles = true
 +++
 
-![Linux user preparing for his Death | feat. zola](asset.jpg)
 
 ## 🎧 Listen to the Episode
 

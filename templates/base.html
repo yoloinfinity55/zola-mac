@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Zola-mac | Project Specification for Zola-mac Blog</title>
+    <title>{% if page.title %}Zola-mac | {{ page.title }}{% else %}Zola-mac{% endif %}</title>
     <meta name="description" content="A blog about building beautiful static sites with Zola on macOS.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ get_url(path='css/style.css') }}">
   </head>
 
-  <body>
+  <body class="{% block body_class %}{% endblock %}">
     <header>
       <h1><a href="{{ get_url(path="/") }}">Zola-mac</a></h1>
       <nav>

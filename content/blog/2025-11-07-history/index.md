@@ -1,5 +1,5 @@
 +++
-title = "2025-11-07-history"
+title = "《我给十二岁的儿子讲下中国的历史：两千年的制度逻辑》"
 date = "2025-11-07T08:10:39.911674"
 authors = ["auto"]
 categories = ["general"]

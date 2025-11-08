@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block body_class %}home{% endblock %}
+
 {% block content %}
 <div class="hero">
   <h1>Welcome to {{ config.title }}</h1>
@@ -22,6 +24,11 @@
     <div class="posts-grid">
       {% for post in blog_section.pages | sort(attribute="date") | reverse | slice(end=6) %}
         <article class="post-card">
+          {% if post.path is starting_with("/blog/") %}
+            <div class="post-card-image">
+              <img src="{{ post.path }}/asset.jpg" alt="{{ post.title }}" loading="lazy">
+            </div>
+          {% endif %}
           <div class="post-card-content">
             <h3 class="post-card-title">
               <a href="{{ post.permalink }}">{{ post.title }}</a>

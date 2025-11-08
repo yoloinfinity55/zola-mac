@@ -6,7 +6,6 @@ tags = [ "website", "zola", "staticsitegenerator", "jamstack",]
 [extra]
 youtube_id = "rLcziFHhpPI"
 +++
-![Zola tutorial #1: Build modern website using static site generator | Jamstack](./asset.jpg)
 
 ## TL;DR (Summary)
 

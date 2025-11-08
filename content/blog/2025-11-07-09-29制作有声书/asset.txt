@@ -1,0 +1,11 @@
+Hello — a quick read on 制作有声书或播客，需要为不同角色配不同的声音，找朋友又怕麻烦人家，自己配又很难演出多个角色的感觉。.
+
+制作有声书或播客，需要为不同角色配不同的声音，找朋友又怕麻烦人家，自己配又很难演出多个角色的感觉。
+
+无独有偶，在 GitHub 上找到了 VibeVoiceFusion 这个开源工具，可以一键生成多人说话语音合成的 Web 应用。
+
+基于微软 VibeVoice 模型，提供了直观的可视化界面来管理说话人、编辑对话和生成语音。
+
+GitHub：http://github.com/zhao-kun/VibeVoiceFusion
+
+Thanks for listening. See the article and comments for full details.

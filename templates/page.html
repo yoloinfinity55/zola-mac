@@ -2,7 +2,17 @@
 
 {% block content %}
 <article class="post">
+  <h1>{{ page.title }}</h1>
   <p class="subtitle" style="color:#888;">{{ page.date | date(format="%B %e, %Y") }}</p>
+  {% if page.extra.youtube_id %}
+  <div class="youtube-thumbnail-container">
+    {% if page.extra.thumbnail %}
+    <img src="{{ page.path }}/{{ page.extra.thumbnail }}" alt="{{ page.title }} thumbnail" class="youtube-thumbnail">
+    {% else %}
+    <img src="{{ page.path }}/asset.jpg" alt="{{ page.title }} thumbnail" class="youtube-thumbnail">
+    {% endif %}
+  </div>
+  {% endif %}
   <div class="post-body">
     {{ page.content | safe }}
   </div>

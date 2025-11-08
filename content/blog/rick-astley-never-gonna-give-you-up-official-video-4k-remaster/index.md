@@ -20,8 +20,6 @@ has_chapters = false
 subtitles = ["en", "de-DE", "ja", "pt-BR", "es-419"]
 +++
 
-![Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)](asset.jpg)
-
 ## 🎧 Listen to the Episode
 
 <audio controls style="width: 100%;">

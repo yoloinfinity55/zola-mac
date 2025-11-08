@@ -6,7 +6,6 @@ tags = [ "zola", "tera", "markdown", "rust", "template",]
 [extra]
 youtube_id = "LtVHYocsWjE"
 +++
-![Zola tutorial #6: Tera template engine | Static site generator | Jamstack](./asset.jpg)
 
 ## TL;DR (Quick Summary)
 

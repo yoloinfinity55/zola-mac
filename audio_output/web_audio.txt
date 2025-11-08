@@ -1,1 +1,25 @@
-No dependencies Zola comes as a single executable with Sass compilation, syntax highlighting, table of contents and many other features that traditionally require setting up a dev environment or adding some JavaScript libraries to your site. Blazing fast The average site will be generated in less than a second, including Sass compilation and syntax highlighting. Scalable Zola renders your whole site as static files, making it trivial to handle any kind of traffic you will throw at it at no cost without having to worry about managing a server or a database. Easy to use From the CLI to the template engine, everything is designed to be intuitive. Don't take my word for it though, look at the documentation and see for yourself. Flexible Zola gets out of your way so you can focus on your content, be it a blog, a knowledge base, a landing page or a combination of them.
+Last month was the worst October for layoff announcements since 2003 as companies slashed roles to save money, pared back pandemic-era hires, and planned ahead for artificial intelligence, according to the
+global outplacement firm Challenger, Gray & Christmas.
+Employers announced 153,074 cuts last month, compared to 55,597 cuts in October 2024. Last month’s figure was “the highest total for October in over 20 years, and the highest total for a single month in the fourth quarter since 2008,” Andy Challenger, chief revenue officer for Challenger, Gray & Christmas, said in a report Thursday.
+Altogether, US firms announced the end of 1,099,500 positions through the first 10 months of this year, up 44% from the 761,358 cuts seen for the entirety of 2024. Technology businesses led private-sector layoffs.
+“October’s pace of job cutting was much higher than average for the month,” Challenger said in a statement.
+“Some industries are correcting after the hiring boom of the pandemic, but this comes as AI adoption, softening consumer and corporate spending, and rising costs drive belt-tightening and hiring freezes,” he continued. “Those laid off now are finding it harder to quickly secure new roles, which could further loosen the labor market.”
+Recent
+notable layoff announcements
+have come from Amazon (
+AMZN
+), Target (
+TGT
+), and UPS (
+UPS
+). Year-to-date cuts are at their highest since 2020, Challenger said, when the pandemic wreaked havoc on the labor market.
+The Challenger report comes amid a data drought from the Labor Department due to the government shutdown — now the longest in US history. The last official jobs report reflects labor conditions from August, while data from September has yet to be published. October’s jobs report, due out tomorrow, is unlikely to be published.
+Read more:
+How the government shutdown affects your student loans, Social Security, and more
+Through August, the story was that the labor market was essentially in stasis: an environment of low hiring and low firing, with
+unemployment nudging up to 4.3%
+as the unemployed struggled to find available positions and the employed clung to their roles.
+It’s unlikely the situation has changed dramatically since then — data from the payroll processor ADP published Wednesday actually
+showed modest job growth
+among private employers for October, with hiring gains mixed by sector.
+Still, Challenger found that for the year through October, employers had announced 488,077 planned hires compared to the 750,333 announced at the same point in 2024 — marking the lowest year-to-date total since 2011. Announced seasonal hiring plans through October were also at their lowest in Challenger’s data dating back to 2012.

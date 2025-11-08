@@ -6,6 +6,14 @@ import subprocess
 import re
 from readability import Document
 from langdetect import detect, DetectorFactory
+import logging
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 # Ensure consistent language detection results
 DetectorFactory.seed = 0
@@ -24,6 +32,7 @@ def get_say_voice(text):
         else:
             return 'Samantha' # Default to English voice
     except Exception:
+        logger.warning("Language detection failed, defaulting to English voice.")
         return 'Samantha' # Default in case of detection error
 
 def main():
@@ -33,7 +42,7 @@ def main():
         url = input("Enter the webpage URL: ").strip()
 
     try:
-        print(f"Fetching content from {url}...")
+        logger.info(f"Fetching content from {url}...")
         response = requests.get(url, timeout=10)
         response.raise_for_status()  # Raise an error for bad status codes
         response.encoding = response.apparent_encoding # Detect and set the correct encoding
@@ -61,12 +70,12 @@ def main():
         if len(text) > 5000:
             text = text[:5000] + " [Text truncated for brevity.]"
 
-        print("Saving extracted text to file...")
+        logger.info("Saving extracted text to file...")
         with open("web_audio.txt", "w", encoding="utf-8") as f:
             f.write(text)
-        print("Text saved to web_audio.txt")
+        logger.info("Text saved to web_audio.txt")
 
-        print("Converting to speech and saving to audio file...")
+        logger.info("Converting to speech and saving to audio file...")
         aiff_file = "web_audio.aiff"
         mp3_file = "web_audio.mp3"
 
@@ -78,15 +87,15 @@ def main():
         subprocess.run(['ffmpeg', '-i', aiff_file, '-acodec', 'libmp3lame', '-q:a', '2', mp3_file, '-y'], check=True)
 
         os.remove(aiff_file)
-        print(f"Audio saved to {mp3_file}! (Check Terminal for any errors.)")
+        logger.info(f"Audio saved to {mp3_file}! (Check Terminal for any errors.)")
 
     except requests.exceptions.RequestException as e:
-        print(f"Error fetching URL: {e}")
+        logger.error(f"Error fetching URL: {e}")
     except subprocess.CalledProcessError as e:
-        print(f"Error during audio conversion: {e}")
+        logger.error(f"Error during audio conversion: {e}")
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-        print("Tips: Ensure the URL is valid (e.g., https://example.com). Some sites block scraping.")
+        logger.error(f"An unexpected error occurred: {e}")
+        logger.error("Tips: Ensure the URL is valid (e.g., https://example.com). Some sites block scraping.")
 
 if __name__ == "__main__":
     main()

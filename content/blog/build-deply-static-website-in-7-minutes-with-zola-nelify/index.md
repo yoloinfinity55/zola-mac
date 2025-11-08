@@ -20,7 +20,6 @@ has_chapters = false
 subtitles = true
 +++
 
-![Build/Deply Static Website in 7 Minutes with Zola & Nelify!!](asset.jpg)
 
 ## 🎧 Listen to the Episode
 

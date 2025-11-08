@@ -1,5 +1,5 @@
 +++
-title = "Web Audio Content"
+title = "Your one-stop static site engine"
 date = "2025-11-06T20:30:00"  # YYYY-MM-DDTHH:MM:SS
 +++
 

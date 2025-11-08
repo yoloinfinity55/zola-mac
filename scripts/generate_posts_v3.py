@@ -796,49 +796,54 @@ def main():
     if args.verbose:
         logger.setLevel(logging.DEBUG)
 
-    initial_checks()
+    try:
+        initial_checks()
 
-    logger.info("=" * 70)
-    logger.info("🚀 Starting Enhanced Blog Post Generation (v3.0)")
-    logger.info("=" * 70)
+        logger.info("=" * 70)
+        logger.info("🚀 Starting Enhanced Blog Post Generation (v3.0)")
+        logger.info("=" * 70)
 
-    # Fetch enhanced metadata
-    meta = fetch_youtube_info(args.youtube)
-    if not meta:
-        logger.error("❌ Failed to fetch video metadata. Exiting.")
+        # Fetch enhanced metadata
+        meta = fetch_youtube_info(args.youtube)
+        if not meta:
+            logger.error("❌ Failed to fetch video metadata. Exiting.")
+            sys.exit(1)
+
+        logger.info(f"📹 Video: {meta['title']}")
+        logger.info(f"👤 Author: {meta['uploader']}")
+        logger.info(f"⏱️  Duration: {format_duration(meta.get('duration', 0))}")
+        logger.info(f"👁️  Views: {meta.get('view_count', 0):,}")
+        logger.info(f"📑 Chapters: {len(meta.get('chapters', []))}")
+
+        slug = slugify(meta["title"])
+        post_bundle_dir = Path(CONTENT_DIR) / slug
+        audio_filepath = post_bundle_dir / "asset.mp3"
+
+        # Download audio
+        post_bundle_dir.mkdir(parents=True, exist_ok=True)
+        audio_downloaded = download_audio(meta["id"], str(audio_filepath))
+
+        transcript_text = ""
+        if audio_downloaded:
+            transcript_text = generate_transcript_from_audio(meta, str(audio_filepath))
+        else:
+            transcript_text = "Automatic transcription failed because the audio file could not be downloaded."
+
+        # Generate enhanced AI narrative (v2 improvement)
+        ai_article = generate_ai_narrative(meta, transcript_text)
+
+        # Save enhanced markdown
+        filename = save_markdown(meta, transcript_text, str(audio_filepath), ai_article)
+
+        logger.info("=" * 70)
+        logger.info(f"✅ Blog post generation complete!")
+        logger.info(f"📄 File: {filename}")
+        logger.info(f"🏷️  Auto-generated {len(categorize_video(meta.get('categories', []), meta.get('tags', []), meta['title'], meta['description']))} relevant tags")
+        logger.info("=" * 70)
+
+    except Exception as e:
+        logger.exception(f"An unexpected error occurred during post generation: {e}")
         sys.exit(1)
-
-    logger.info(f"📹 Video: {meta['title']}")
-    logger.info(f"👤 Author: {meta['uploader']}")
-    logger.info(f"⏱️  Duration: {format_duration(meta.get('duration', 0))}")
-    logger.info(f"👁️  Views: {meta.get('view_count', 0):,}")
-    logger.info(f"📑 Chapters: {len(meta.get('chapters', []))}")
-
-    slug = slugify(meta["title"])
-    post_bundle_dir = Path(CONTENT_DIR) / slug
-    audio_filepath = post_bundle_dir / "asset.mp3"
-
-    # Download audio
-    post_bundle_dir.mkdir(parents=True, exist_ok=True)
-    audio_downloaded = download_audio(meta["id"], str(audio_filepath))
-
-    transcript_text = ""
-    if audio_downloaded:
-        transcript_text = generate_transcript_from_audio(meta, str(audio_filepath))
-    else:
-        transcript_text = "Automatic transcription failed because the audio file could not be downloaded."
-
-    # Generate enhanced AI narrative (v2 improvement)
-    ai_article = generate_ai_narrative(meta, transcript_text)
-
-    # Save enhanced markdown
-    filename = save_markdown(meta, transcript_text, str(audio_filepath), ai_article)
-
-    logger.info("=" * 70)
-    logger.info(f"✅ Blog post generation complete!")
-    logger.info(f"📄 File: {filename}")
-    logger.info(f"🏷️  Auto-generated {len(categorize_video(meta.get('categories', []), meta.get('tags', []), meta['title'], meta['description']))} relevant tags")
-    logger.info("=" * 70)
 
 
 if __name__ == "__main__":

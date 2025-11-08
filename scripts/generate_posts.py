@@ -810,48 +810,52 @@ def main():
     if args.verbose:
         logger.setLevel(logging.DEBUG)
     
-    initial_checks()
-    
-    logger.info("=" * 60)
-    logger.info("Starting blog post generation...")
-    logger.info("=" * 60)
-    
-    meta = fetch_youtube_info(args.youtube)
-    if not meta:
-        logger.error("❌ Failed to fetch video metadata. Exiting.")
+    try:
+        initial_checks()
+        
+        logger.info("=" * 60)
+        logger.info("Starting blog post generation...")
+        logger.info("=" * 60)
+        
+        meta = fetch_youtube_info(args.youtube)
+        if not meta:
+            logger.error("❌ Failed to fetch video metadata. Exiting.")
+            sys.exit(1)
+
+        slug = slugify(meta["title"])
+        post_bundle_dir = Path(CONTENT_DIR) / slug
+        audio_filepath = post_bundle_dir / "asset.mp3"
+
+        # 1. Download audio
+        post_bundle_dir.mkdir(parents=True, exist_ok=True)
+        audio_downloaded = download_audio(meta["id"], str(audio_filepath))
+        
+        transcript_text = ""
+        if audio_downloaded:
+            # 2. Generate transcript (handles chunking)
+            transcript_text = generate_transcript_from_audio(meta, str(audio_filepath))
+        else:
+            transcript_text = "Automatic transcription failed because the audio file could not be downloaded."
+        
+        # 3. Generate AI structured summary
+        ai_structure = generate_ai_summary_and_structure(meta["title"], meta["description"], transcript_text)
+        
+        # 4. Generate the final human-like article
+        final_article = generate_final_article(meta["title"], meta["description"], transcript_text, ai_structure or "")
+        
+        # 5. Generate the social media post
+        social_post = generate_social_media_post(meta["title"], meta["description"], meta.get("tags", []))
+        
+        # 6. Save markdown (which also downloads thumbnail)
+        filename = save_markdown(meta, transcript_text, str(audio_filepath), ai_structure, final_article, social_post)
+        
+        logger.info("=" * 60)
+        logger.info(f"✅ Blog post generation complete!")
+        logger.info(f"📄 File saved: {filename}")
+        logger.info("=" * 60)
+    except Exception as e:
+        logger.exception(f"An unexpected error occurred during post generation: {e}")
         sys.exit(1)
-
-    slug = slugify(meta["title"])
-    post_bundle_dir = Path(CONTENT_DIR) / slug
-    audio_filepath = post_bundle_dir / "asset.mp3"
-
-    # 1. Download audio
-    post_bundle_dir.mkdir(parents=True, exist_ok=True)
-    audio_downloaded = download_audio(meta["id"], str(audio_filepath))
-    
-    transcript_text = ""
-    if audio_downloaded:
-        # 2. Generate transcript (handles chunking)
-        transcript_text = generate_transcript_from_audio(meta, str(audio_filepath))
-    else:
-        transcript_text = "Automatic transcription failed because the audio file could not be downloaded."
-    
-    # 3. Generate AI structured summary
-    ai_structure = generate_ai_summary_and_structure(meta["title"], meta["description"], transcript_text)
-    
-    # 4. Generate the final human-like article
-    final_article = generate_final_article(meta["title"], meta["description"], transcript_text, ai_structure or "")
-    
-    # 5. Generate the social media post
-    social_post = generate_social_media_post(meta["title"], meta["description"], meta.get("tags", []))
-    
-    # 6. Save markdown (which also downloads thumbnail)
-    filename = save_markdown(meta, transcript_text, str(audio_filepath), ai_structure, final_article, social_post)
-    
-    logger.info("=" * 60)
-    logger.info(f"✅ Blog post generation complete!")
-    logger.info(f"📄 File saved: {filename}")
-    logger.info("=" * 60)
 
 
 if __name__ == "__main__":

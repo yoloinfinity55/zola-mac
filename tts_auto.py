@@ -6,6 +6,14 @@ from pydub import AudioSegment
 from tqdm import tqdm
 import tempfile
 import textwrap
+import logging
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 # Optional background music file (set to None if not needed)
 BACKGROUND_MUSIC = "bgm.mp3"  # place in same folder, or set to None
@@ -22,10 +30,10 @@ VOICE_MAP = {
 def detect_language(text):
     try:
         lang = detect(text)
-        print(f"🌐 Detected language: {lang}")
+        logger.info(f"🌐 Detected language: {lang}")
         return lang
     except Exception:
-        print("⚠️ Could not detect language, defaulting to English.")
+        logger.warning("⚠️ Could not detect language, defaulting to English.")
         return "en"
 
 def chunk_text(text, max_chars=300):
@@ -42,7 +50,7 @@ async def tts_chunk_to_mp3(text_chunk, voice, filename):
 async def generate_tts(text, lang_code, output_file):
     """Generate final MP3, merging chunks and optional background music."""
     voice = VOICE_MAP.get(lang_code.split("-")[0], VOICE_MAP["en"])
-    print(f"🗣️ Using voice: {voice}")
+    logger.info(f"🗣️ Using voice: {voice}")
 
     chunks = chunk_text(text)
     temp_files = []
@@ -54,7 +62,7 @@ async def generate_tts(text, lang_code, output_file):
         temp_files.append(temp_file)
 
     # Merge all MP3s
-    print("🔊 Combining audio segments...")
+    logger.info("🔊 Combining audio segments...")
     final_audio = AudioSegment.empty()
     for f in temp_files:
         final_audio += AudioSegment.from_mp3(f)
@@ -65,31 +73,31 @@ async def generate_tts(text, lang_code, output_file):
         bgm = AudioSegment.from_mp3(BACKGROUND_MUSIC) - 25  # reduce volume
         bgm = bgm[:len(final_audio)]  # trim to same length
         final_audio = final_audio.overlay(bgm)
-        print("🎶 Background music mixed in.")
+        logger.info("🎶 Background music mixed in.")
 
     final_audio.export(output_file, format="mp3", bitrate="192k")
-    print(f"✅ Speech saved to {output_file}")
+    logger.info(f"✅ Speech saved to {output_file}")
 
 def add_audio_link_to_markdown(audio_file, markdown_file="post.md"):
     """Append audio player link to a markdown blog post."""
     link = f"\n\n{{{{ audio({audio_file}) }}}}\n"
     with open(markdown_file, "a", encoding="utf-8") as f:
         f.write(link)
-    print(f"📎 Added audio link to {markdown_file}")
+    logger.info(f"📎 Added audio link to {markdown_file}")
 
 def main():
     input_file = "web_audio.txt"
     output_file = "web_audio.mp3"
 
     if not os.path.exists(input_file):
-        print(f"❌ {input_file} not found.")
+        logger.error(f"❌ {input_file} not found.")
         return
 
     with open(input_file, "r", encoding="utf-8") as f:
         text = f.read().strip()
 
     if not text:
-        print("❌ Text file is empty.")
+        logger.error("❌ Text file is empty.")
         return
 
     lang = detect_language(text)

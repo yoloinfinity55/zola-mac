@@ -5,6 +5,8 @@ yt-dlp>=2023.0.0
 python-slugify>=8.0.0
 python-dotenv>=1.0.0
 readability-lxml>=0.8.1
+toml>=0.10.0
+Pillow>=10.0.0
 
 # Text-to-Speech (Edge-TTS)
 edge-tts==7.0.0
