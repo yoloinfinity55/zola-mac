@@ -1,0 +1,22 @@
+{
+  "posts": {
+    "content/blog/zola-tutorial-1-build-modern-website-using-static-site-generator-jamstack.md": {
+      "title": "Zola tutorial #1: Build modern website using static site generator | Jamstack",
+      "created_at": "2025-11-02T12:43:58.262211",
+      "filename": "zola-tutorial-1-build-modern-website-using-static-site-generator-jamstack.md"
+    },
+    "content/blog/zola-static-site-generator-building-professional-website-jamstack.md": {
+      "title": "Zola: Static Site Generator | Building professional website | Jamstack",
+      "created_at": "2025-11-02T14:25:14.129657",
+      "filename": "zola-static-site-generator-building-professional-website-jamstack.md"
+    }
+  },
+  "youtube_videos": {
+    "https://www.youtube.com/watch?v=Xd42NAnXzcc&list=PL9pZM6WESR5Z1g_XFTT-hkPlHrTk5UPUt&index=2": {
+      "title": "Zola: Static Site Generator | Building professional website | Jamstack",
+      "created_at": "2025-11-02T14:19:37.242536",
+      "filepath": "content/blog/zola-static-site-generator-building-professional-website-jamstack.md"
+    }
+  },
+  "generated_at": "2025-11-02T14:25:14.129662"
+}

@@ -1,0 +1,58 @@
+Fetching Available Voices
+
+English Voices:
+
+Microsoft Server Speech Text to Speech Voice (en-US, AriaNeural)
+Microsoft Server Speech Text to Speech Voice (en-US, ZiraNeural)
+Microsoft Server Speech Text to Speech Voice (en-US, JennyNeural)
+Microsoft Server Speech Text to Speech Voice (en-US, GuyNeural)
+Microsoft Server Speech Text to Speech Voice (en-GB, SoniaNeural)
+Microsoft Server Speech Text to Speech Voice (en-GB, RyanNeural)
+Microsoft Server Speech Text to Speech Voice (en-GB, LibbyNeural)
+Microsoft Server Speech Text to Speech Voice (en-GB, AriaNeural)
+Microsoft Server Speech Text to Speech Voice (en-AU, NatashaNeural)
+Microsoft Server Speech Text to Speech Voice (en-AU, WilliamNeural)
+Microsoft Server Speech Text to Speech Voice (en-CA, ClaraNeural)
+Microsoft Server Speech Text to Speech Voice (en-CA, LiamNeural)
+Microsoft Server Speech Text to Speech Voice (en-IN, NeerjaNeural)
+Microsoft Server Speech Text to Speech Voice (en-IN, PrabhatNeural)
+
+
+
+Chinese Voices:
+
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaoxiaoNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, YunxiNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaochenNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaohanNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaomengNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaomoNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaoqiuNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaoruiNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaoshuangNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaoxuanNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaoyanNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaoyouNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaozhenNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, YunfengNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, YunhaoNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, YunjianNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, YunxiaNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, YunyangNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, YunyeNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, YunzeNeural)
+Microsoft Server Speech Text to Speech Voice (zh-HK, HiuGaaiNeural)
+Microsoft Server Speech Text to Speech Voice (zh-HK, HiuMaanNeural)
+Microsoft Server Speech Text to Speech Voice (zh-HK, WanLungNeural)
+Microsoft Server Speech Text to Speech Voice (zh-TW, HsiaoChenNeural)
+Microsoft Server Speech Text to Speech Voice (zh-TW, HsiaoYuNeural)
+Microsoft Server Speech Text to Speech Voice (zh-TW, YunJheNeural)
+
+
+
+Multilingual Voices:
+
+Microsoft Server Speech Text to Speech Voice (en-US, AriaNeural)
+Microsoft Server Speech Text to Speech Voice (en-US, ZiraNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, XiaoxiaoNeural)
+Microsoft Server Speech Text to Speech Voice (zh-CN, YunxiNeural)

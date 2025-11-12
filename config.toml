@@ -6,7 +6,8 @@ build_search_index = false
 ignored_content = ["blog/archive/*.md"]
 
 taxonomies = [
-    { name = "tags", feed = true }
+    { name = "tags", feed = true },
+    { name = "categories", feed = true }
 ]
 
 [markdown]

@@ -2,6 +2,7 @@
 
 requests>=2.31.0
 yt-dlp>=2023.0.0
+pytube>=15.0.0
 python-slugify>=8.0.0
 python-dotenv>=1.0.0
 readability-lxml>=0.8.1
@@ -13,6 +14,9 @@ edge-tts==7.0.0
 langdetect>=1.0.9
 tqdm>=4.67.1
 pydub>=0.25.1
+
+# Text-to-Speech (Gemini TTS - Primary)
+google-genai>=1.49.0
 
 # Optional legacy fallback
 # pyttsx3>=2.90  # Commented out — replaced by neural Edge-TTS
